@@ -1,15 +1,18 @@
-import { FunctionComponent } from "react";
-import InputForm from "./InputForm";
+import { FunctionComponent, useContext } from "react";
+import InputForm from "./ReusableComp/InputForm";
 import { FormikValues, useFormik } from "formik";
 import * as yup from "yup";
 import { loginUser } from "../services/usersCrud";
 import toastEmitter from "../emitter/toastEmitter";
 import { useNavigate } from "react-router-dom";
-
+import { IUser, userContext } from "../services/userContext";
+import decodeUser from "../util/Decode";
 
 interface LoginProps {}
 
 const Login: FunctionComponent<LoginProps> = () => {
+  const { setUser } = useContext(userContext);
+
   const navigate = useNavigate();
   const formik: FormikValues = useFormik<FormikValues>({
     initialValues: {
@@ -29,18 +32,18 @@ const Login: FunctionComponent<LoginProps> = () => {
         .required(),
     }),
     onSubmit: (values, { resetForm }) => {
-        loginUser(values)
-        .then((res:any) => {
-            sessionStorage.setItem("token", res.data)
-            toastEmitter.success("User Logged In Succesfully!"),
-            navigate("/")
-
+      loginUser(values)
+        .then((res: any) => {
+          localStorage.setItem("token", res.data);
+          const decodedUser = decodeUser(res.data);
+          setUser(decodedUser as IUser);
+          toastEmitter.success("User Logged In Succesfully!");
+          navigate("/");
         })
         .catch((err) => {
-            console.log(err),
-            toastEmitter.error("Failed to Log In!")
-        })
-        resetForm()
+          console.log(err), toastEmitter.error("Failed to Log In!");
+        });
+      resetForm();
     },
   });
   return (

@@ -1,5 +1,4 @@
 
-
 import { createContext } from "react";
 
 export interface IUser{
@@ -14,4 +13,7 @@ export interface UserContextType{
     setUser:  React.Dispatch<React.SetStateAction<IUser | null>>;
 }
 
-export const userContext = createContext<UserContextType | undefined>(undefined);
+export const userContext = createContext<UserContextType>({
+     user:null,
+     setUser: () => {}
+});

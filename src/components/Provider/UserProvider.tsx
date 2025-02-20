@@ -3,6 +3,7 @@ import decodeUser from "../../util/Decode";
 import { IUser, userContext } from "../../services/userContext";
 
 
+
 interface UserProviderProps {
   children: ReactNode;
 }
@@ -11,7 +12,7 @@ const UserProvider: FunctionComponent<UserProviderProps> = ({ children }) => {
   const [user, setUser] = useState<IUser | null>(null);
 
   useEffect(() => {
-    const token = sessionStorage.getItem("token");
+    const token = localStorage.getItem("token");
     if (token) {
       try {
         const decodedUser = decodeUser(token);

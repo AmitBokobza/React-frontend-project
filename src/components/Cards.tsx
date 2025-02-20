@@ -10,7 +10,8 @@ interface CardsProps {}
 
 const Cards: FunctionComponent<CardsProps> = () => {
   const [cards, setCards] = useState<Card[]>([]);
-  const {user} = useContext(userContext) ?? {};
+  const { user } = useContext(userContext) || {};
+  console.log(user);
   
   
 
@@ -28,10 +29,10 @@ const Cards: FunctionComponent<CardsProps> = () => {
 
   return (
     <>
-      <div className="flex flex-wrap justify-center">
+      <div className={`flex flex-wrap justify-center`}>
         {cards.map((card: Card) => (
           <div
-            className="w-[350px] mix-h-[400px] my-10 mx-3 border border-gray-400 rounded-xl"
+            className={`w-[350px] mix-h-[400px] my-10 mx-3 border border-gray-400 rounded-xl`}
             key={card._id}
           >
             <div className="">
@@ -70,11 +71,9 @@ const Cards: FunctionComponent<CardsProps> = () => {
                 <FaPhoneAlt />
               </button>
               <button>
-                <CiHeart className="text-2xl"/>
+                <CiHeart className="text-2xl" />
               </button>
-              {user?.isBusiness && (
-                <button>Im Business</button>
-              )}
+              {user?.isBusiness && <button>Im Business</button>}
             </div>
           </div>
         ))}
