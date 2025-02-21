@@ -21,15 +21,7 @@ const Login: FunctionComponent<LoginProps> = () => {
     },
     validationSchema: yup.object({
       email: yup.string().min(5).required(),
-      password: yup
-        .string()
-        .min(7)
-        .max(20)
-        .matches(
-          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*\-]).{9,}$/,
-          "Password must be at least nine characters long and contain an uppercase letter, a lowercase letter, a number, and one of the following special characters: !@#$%^&*-"
-        )
-        .required(),
+      password: yup.string().required(),
     }),
     onSubmit: (values, { resetForm }) => {
       loginUser(values)
@@ -39,41 +31,46 @@ const Login: FunctionComponent<LoginProps> = () => {
           setUser(decodedUser as IUser);
           toastEmitter.success("User Logged In Succesfully!");
           navigate("/");
+          resetForm();
         })
         .catch((err) => {
-          console.log(err), toastEmitter.error("Failed to Log In!");
+          console.log(err);
+          toastEmitter.error("Wrong Email or Password!");
         });
-      resetForm();
     },
   });
   return (
-    <>
-      <div className="container w-75 mx-auto px-3 py-3">
-        <form className="max-w-md mx-auto" onSubmit={formik.handleSubmit}>
-          <InputForm
-            type="email"
-            name="email"
-            id="email"
-            formik={formik}
-            required
-          />
-          <InputForm
-            type="password"
-            name="password"
-            id="password"
-            formik={formik}
-            required
-          />
+    <div className="container w-75 mx-auto px-4 py-8">
+      <h2 className="text-4xl font-semibold text-center light:text-gray-800 mb-6">
+        Login
+      </h2>
+      <form
+        className="max-w-md mx-auto space-y-6"
+        onSubmit={formik.handleSubmit}
+      >
+        <InputForm
+          type="email"
+          name="email"
+          id="email"
+          formik={formik}
+          required
+        />
+        <InputForm
+          type="password"
+          name="password"
+          id="password"
+          formik={formik}
+          required
+        />
 
-          <button
-            type="submit"
-            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-          >
-            Login
-          </button>
-        </form>
-      </div>
-    </>
+        <button
+          type="submit"
+          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        >
+          Login
+        </button>
+      </form>
+    </div>
   );
 };
 

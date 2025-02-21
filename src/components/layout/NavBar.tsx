@@ -12,10 +12,10 @@ interface NavBarProps {}
 
 const NavBar: FunctionComponent<NavBarProps> = () => {
   const { user } = useContext(userContext) ?? { user: undefined };
-  const { toggleTheme } = useContext(ThemeContext);
+  const { theme, toggleTheme } = useContext(ThemeContext);
 
   return (
-    <div className="bg-dark flex px-3 py-3 items-center justify-between">
+    <div className={`flex px-3 py-3 items-center justify-between bg-${theme} navbar`}>
       <div className="flex justify-between items-center">
         <Link to="/">
           <h1 className="logo font-extrabold text-2xl mr-5">AmitBusiness</h1>

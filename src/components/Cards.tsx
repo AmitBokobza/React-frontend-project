@@ -11,7 +11,7 @@ interface CardsProps {}
 const Cards: FunctionComponent<CardsProps> = () => {
   const [cards, setCards] = useState<Card[]>([]);
   const { user } = useContext(userContext) || {};
-  console.log(user);
+  
   
   
 
