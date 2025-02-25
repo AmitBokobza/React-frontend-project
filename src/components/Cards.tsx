@@ -30,7 +30,6 @@ const Cards: FunctionComponent<CardsProps> = () => {
 
   return (
     <>
-  {/* Apply .bg-light or .bg-dark to control theme */}
   <div className={`card bg-${theme} min-h-screen`}>
     <div className="flex flex-wrap justify-center">
       {cards.map((card: Card) => (

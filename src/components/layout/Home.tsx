@@ -18,7 +18,7 @@ const Home: FunctionComponent<HomeProps> = () => {
         </div>
         {/*Cards Area*/}
         <div className={`w-full`}>
-          <div className="mx-auto max-h-[700px] max-w-[1200px] overflow-y-auto">
+          <div className="mx-auto max-h-[700px] max-w-[1500px] overflow-y-auto">
             <Cards />
           </div>
         </div>

@@ -7,11 +7,13 @@ import { ThemeContext } from "../Provider/ThemeProvider";
 import NavUser from "../ReusableComp/NavUser";
 import { Link } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { CiSun } from "react-icons/ci";
+
 
 interface NavBarProps {}
 
 const NavBar: FunctionComponent<NavBarProps> = () => {
-  const { user } = useContext(userContext) ?? { user: undefined };
+  const { user } = useContext(userContext);
   const { theme, toggleTheme } = useContext(ThemeContext);
 
   return (
@@ -37,10 +39,11 @@ const NavBar: FunctionComponent<NavBarProps> = () => {
             </button>
           </label>
         </div>
+        
 
         <div className="flex items-center mx-3">
           <button className="mx-3" onClick={toggleTheme}>
-            <MdDarkMode className="text-xl" />
+            {theme === "light" ? ( <MdDarkMode className="text-xl" />) : (<CiSun className="text-xl"/>)}
           </button>
           <button>
             <GiHamburgerMenu className="lg:hidden text-2xl" />
