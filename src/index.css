@@ -48,3 +48,15 @@
 .bg-dark .border {
     border-color: #3a3a40; /* Darker border color */
 }
+
+.bg-dark .card {
+    background-color: #1f2937; /* A dark background for cards in dark mode */
+    border-color: #b8b8bd;
+    color: #e3e8f0;
+  }
+  
+  .bg-light .card {
+    background-color: #ffffff; /* white card background */
+    border-color: #aab2c1;      /* your subtle border color */
+    color: #1e293b;            /* dark text for readability */
+  }

@@ -32,9 +32,9 @@ const Register: FunctionComponent<RegisterProps> = () => {
       isBusiness: false,
     },
     validationSchema: yup.object({
-      first: yup.string().min(2).max(256).required(),
+      first: yup.string().min(2).max(256).required("First name is required!"),
       middle: yup.string().min(2).max(256),
-      last: yup.string().min(2).max(256).required(),
+      last: yup.string().min(2).max(256).required("Last name is required!"),
       phone: yup
         .string()
         .min(9)
@@ -43,8 +43,8 @@ const Register: FunctionComponent<RegisterProps> = () => {
           /^(?:(?:\+972-?(?:[2-9]\d{7}|5\d{8}))|(?:0(?:[2-9]\d{7}|5\d{8})))$/,
           "Phone number must be a valid Israeli phone number"
         )
-        .required(),
-      email: yup.string().min(5).required(),
+        .required("Phone number is required!"),
+      email: yup.string().min(5).required("Email is required!"),
       password: yup
         .string()
         .min(7)
@@ -53,15 +53,15 @@ const Register: FunctionComponent<RegisterProps> = () => {
           /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*\-]).{9,}$/,
           "Password must be at least nine characters long and contain an uppercase letter, a lowercase letter, a number, and one of the following special characters: !@#$%^&*-"
         )
-        .required(),
+        .required("Password is required!"),
       url: yup.string().min(14),
       alt: yup.string().min(14).max(256),
       state: yup.string().min(2).max(256),
-      country: yup.string().min(2).max(256).required(),
-      city: yup.string().min(2).max(256).required(),
-      street: yup.string().min(2).max(256).required(),
-      houseNum: yup.number().required(),
-      zip: yup.number().required(),
+      country: yup.string().min(2).max(256).required("Country is required!"),
+      city: yup.string().min(2).max(256).required("City is required"),
+      street: yup.string().min(2).max(256).required("Street is required!"),
+      houseNum: yup.number().required("House number is required!"),
+      zip: yup.number().required("Zip code is required!"),
     }),
     onSubmit: (values, { resetForm }) => {
       const newUser = normalizeUser(values);
@@ -101,6 +101,7 @@ const Register: FunctionComponent<RegisterProps> = () => {
                 formik={formik}
                 required
               />
+
               <InputForm
                 type="text"
                 name="middle"
@@ -216,6 +217,7 @@ const Register: FunctionComponent<RegisterProps> = () => {
             </label>
           </div>
           <button
+            disabled={!formik.dirty || !formik.isValid}
             type="submit"
             className="w-full sm:w-auto text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-8 py-4 text-center 
              dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 transition duration-300"
