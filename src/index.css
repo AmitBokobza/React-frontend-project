@@ -1,62 +1,68 @@
 @import "tailwindcss";
-/* Light Mode */
+
 .bg-light {
-    background-color: #e3e6eb; /* Soft grayish-blue */
-    color: #1e293b; /* Darker blue-gray text */
+    background-color: #e3e6eb; 
+    color: #1e293b; 
 }
 
 .bg-light .navbar {
-    background-color: #508ad5; /* Softer light gray */
-    color: white; /* Dark text */
+    background-color: #508ad5; 
+    color: white; 
     padding: 12px 20px;
-    border-bottom: 1px solid #aab2c1; /* Lighter border */
+    border-bottom: 1px solid #aab2c1; 
 }
 
 .bg-light .secondary-text {
-    color: #6b7b8b; /* Muted text for secondary info */
+    color: #6b7b8b; 
 }
 
 .bg-light .accent {
-    color: #0066cc; /* Accent blue */
+    color: #0066cc; 
 }
 
 .bg-light .border {
-    border-color: #aab2c1; /* Subtle border color */
+    border-color: #aab2c1;
 }
 
-/* Dark Mode (Lightened) */
+
 .bg-dark {
-    background-color: #3a4b5e; /* Slightly lighter dark gray */
-    color: #e3e8f0; /* Soft white for readability */
+    background-color: #3a4b5e; 
+    color: #e3e8f0; 
 }
 
 .bg-dark .navbar {
-    background-color: #1d2024; /* Slightly lighter dark gray for navbar */
-    color: #e3e8f0; /* Soft white text */
+    background-color: #1d2024; 
+    color: #e3e8f0; 
     padding: 12px 20px;
-    border-bottom: 1px solid #3a3a40; /* Subtle dark border */
+    border-bottom: 1px solid #3a3a40; 
 }
 
 .bg-dark .secondary-text {
-    color: #a6a6aa; /* Lighter gray for secondary text */
+    color: #a6a6aa; 
 }
 
 .bg-dark .accent {
-    color: #3d82f6; /* Accent blue */
+    color: #3d82f6;
 }
 
 .bg-dark .border {
-    border-color: #3a3a40; /* Darker border color */
+    border-color: #3a3a40; 
 }
 
 .bg-dark .card {
-    background-color: #1f2937; /* A dark background for cards in dark mode */
+    background-color: #1f2937; 
     border-color: #b8b8bd;
     color: #e3e8f0;
   }
   
   .bg-light .card {
-    background-color: #ffffff; /* white card background */
-    border-color: #aab2c1;      /* your subtle border color */
-    color: #1e293b;            /* dark text for readability */
+    background-color: #ffffff; 
+    border-color: #aab2c1;      
+    color: #1e293b;           
   }
+
+  .card:hover {
+    transform: scale(1.001);
+    transition: all 0.3s;
+    box-shadow: 6px 4px 10px rgba(0, 0, 0, 0.2);
+}
