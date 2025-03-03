@@ -1,13 +1,13 @@
+import { FormikValues } from "formik";
 import { FunctionComponent, useContext } from "react";
 import InputForm from "./InputForm";
-import { FormikValues } from "formik";
 import { ThemeContext } from "../Provider/ThemeProvider";
 
-interface RegisterFormProps {
+interface CardFormProps {
   formik: FormikValues;
 }
 
-const RegisterForm: FunctionComponent<RegisterFormProps> = ({ formik }) => {
+const CardForm: FunctionComponent<CardFormProps> = ({ formik }) => {
   const { theme } = useContext(ThemeContext);
   return (
     <>
@@ -19,37 +19,32 @@ const RegisterForm: FunctionComponent<RegisterFormProps> = ({ formik }) => {
           onSubmit={formik.handleSubmit}
         >
           <div>
-            <h3 className="text-lg font-semibold light:text-gray-700 mb-3">
-              Full Name
-            </h3>
             <div className="grid grid-cols-3 gap-6">
               <InputForm
                 type="text"
-                name="first"
-                id="firstName"
+                name="title"
+                id="title"
                 formik={formik}
                 required
               />
 
               <InputForm
                 type="text"
-                name="middle"
-                id="middleName"
+                name="subtitle"
+                id="subtitle"
                 formik={formik}
+                required
               />
               <InputForm
                 type="text"
-                name="last"
-                id="lastName"
+                name="description"
+                id="description"
                 formik={formik}
                 required
               />
             </div>
           </div>
           <div>
-            <h3 className="text-lg font-semibold light:text-gray-700 mb-3">
-              Contact Information
-            </h3>
             <div className="grid grid-cols-3 gap-6">
               <InputForm
                 type="tel"
@@ -65,19 +60,10 @@ const RegisterForm: FunctionComponent<RegisterFormProps> = ({ formik }) => {
                 formik={formik}
                 required
               />
-              <InputForm
-                type="password"
-                name="password"
-                id="password"
-                formik={formik}
-                required
-              />
+              <InputForm type="text" name="web" id="web" formik={formik} />
             </div>
           </div>
           <div>
-            <h3 className="text-lg font-semibold light:text-gray-700 mb-3">
-              Image & Alternate Text
-            </h3>
             <div className="grid grid-cols-2 gap-6">
               <InputForm type="url" name="url" id="url" formik={formik} />
               <InputForm type="text" name="alt" id="alt" formik={formik} />
@@ -119,32 +105,10 @@ const RegisterForm: FunctionComponent<RegisterFormProps> = ({ formik }) => {
                 formik={formik}
                 required
               />
-              <InputForm
-                type="number"
-                name="zip"
-                id="zip"
-                formik={formik}
-                required
-              />
+              <InputForm type="number" name="zip" id="zip" formik={formik} />
             </div>
           </div>
-          <div className="flex items-center gap-3 mb-6">
-            <input
-              name="isBusiness"
-              id="isBusiness"
-              type="checkbox"
-              className="w-6 h-6 border border-gray-400 rounded-lg bg-gray-50 dark:bg-gray-700 focus:ring-3 focus:ring-blue-300 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:border-gray-600 transition duration-300"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              checked={formik.values.isBusiness}
-            />
-            <label
-              htmlFor="isBusiness"
-              className="text-lg font-medium light:text-gray-800"
-            >
-              Business Account?
-            </label>
-          </div>
+          
           <button
             disabled={!formik.dirty || !formik.isValid}
             type="submit"
@@ -159,4 +123,4 @@ const RegisterForm: FunctionComponent<RegisterFormProps> = ({ formik }) => {
   );
 };
 
-export default RegisterForm;
+export default CardForm;

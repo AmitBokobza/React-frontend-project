@@ -5,6 +5,8 @@ import { FaPhoneAlt } from "react-icons/fa";
 import { CiHeart } from "react-icons/ci";
 import { userContext } from "../services/userContext";
 import { ThemeContext } from "./Provider/ThemeProvider";
+import { searchContext } from "../App";
+
 
 interface CardsProps {}
 
@@ -14,12 +16,16 @@ const Cards: FunctionComponent<CardsProps> = () => {
   const [cards, setCards] = useState<Card[]>([]);
   const { user } = useContext(userContext);
   const { theme } = useContext(ThemeContext);
+  const {search} = useContext(searchContext);
+
+  const filteredCards = cards.filter((card) => card.title.toLowerCase().includes(search.toLowerCase()))
+
 
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const totalPages = Math.ceil(cards.length / ITEMS_PER_PAGE);
+  const totalPages = Math.ceil(filteredCards.length / ITEMS_PER_PAGE);
   const indexOfLastCard = currentPage * ITEMS_PER_PAGE;
   const indexOfFirstCard = indexOfLastCard - ITEMS_PER_PAGE;
-  const currentCards = cards.slice(indexOfFirstCard, indexOfLastCard);
+  const currentCards = filteredCards.slice(indexOfFirstCard, indexOfLastCard);
 
   useEffect(() => {
     const fetchCards = async () => {
@@ -36,7 +42,7 @@ const Cards: FunctionComponent<CardsProps> = () => {
   return (
     <>
       <div className="flex flex-wrap justify-center">
-        {currentCards.map((card: Card) => (
+        {currentCards.length > 0 ? (currentCards.map((card: Card) => (
           <div
             className={`w-[350px] min-h-[400px] my-10 mx-3 border rounded bg-${theme} card`}
             key={card._id}
@@ -84,7 +90,11 @@ const Cards: FunctionComponent<CardsProps> = () => {
               )}
             </div>
           </div>
-        ))}
+        ))) : (
+          <p className="my-10 text-2xl ">
+            Sorry! No cards found!
+          </p>
+        )}
       </div>
       <div className="flex justify-center my-4">
         <button

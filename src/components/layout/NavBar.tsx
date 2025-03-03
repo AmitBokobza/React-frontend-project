@@ -8,13 +8,18 @@ import NavUser from "../ReusableComp/NavUser";
 import { Link } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { CiSun } from "react-icons/ci";
+import { searchContext } from "../../App";
 
 
 interface NavBarProps {}
 
+
 const NavBar: FunctionComponent<NavBarProps> = () => {
   const { user } = useContext(userContext);
   const { theme, toggleTheme } = useContext(ThemeContext);
+  const {setSearch} = useContext(searchContext)
+  
+  
 
   return (
     <nav className={`flex px-3 py-3 items-center justify-between bg-${theme} navbar`}>
@@ -33,6 +38,7 @@ const NavBar: FunctionComponent<NavBarProps> = () => {
               type="text"
               placeholder="Search"
               className="bg-light text-black py-1 px-1 rounded"
+              onChange={(e) => setSearch(e.target.value) }
             />
             <button className="px-1">
               <CiSearch className="text-black text-xl" />

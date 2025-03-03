@@ -6,16 +6,25 @@ import Login from "./components/Login";
 import UserLayout from "./components/layout/UserLayout";
 import NavBar from "./components/layout/NavBar";
 import Home from "./components/layout/Home";
+import { createContext, useState } from "react";
+import CreateCard from "./components/CreateCard";
 
-
-
+export interface Quarry {
+  search: string;
+  setSearch : (value:string) => void;
+}
+export const searchContext = createContext<Quarry>({
+  search: "",
+  setSearch: () => {}
+});
 
 function App() {
-  
+  const [search , setSearch] = useState<string>("")
 
   
   return (
     <>
+    <searchContext.Provider value={{search, setSearch}}>
       <ToastContainer/>
       <Router>
         <NavBar/>
@@ -24,9 +33,11 @@ function App() {
               <Route index element={<Home/>}/>
               <Route path="register" element={<Register/>}/>
               <Route path="login" element={<Login/>}/>
+              <Route path="create-card" element={<CreateCard/>}/>
             </Route>
         </Routes>
       </Router>
+      </searchContext.Provider>
     </>
   )
 }
