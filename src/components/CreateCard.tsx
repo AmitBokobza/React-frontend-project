@@ -73,7 +73,7 @@ const CreateCard: FunctionComponent<CreateCardProps> = () => {
   else{
     return (
         <div className="text-center">
-            <h1 className="text-3xl my-10">Sorry No Access!</h1>
+            <h1 className="text-3xl my-10">No Acess! Must be Business type user!</h1>
         </div>
     )
   }

@@ -80,6 +80,9 @@ const Register: FunctionComponent<RegisterProps> = () => {
 
   return (
     <>
+      <div className="text-center">
+        <h1 className="text-3xl my-5">Sign Up</h1>
+      </div>
       <RegisterForm formik={formik} />
     </>
   );
