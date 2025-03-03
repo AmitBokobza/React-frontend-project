@@ -1,7 +1,7 @@
 import { FormikValues, useFormik } from "formik";
 import { FunctionComponent, useContext } from "react";
 import * as yup from "yup";
-import { normalizeUser } from "../util/NormalizeUser";
+import { normalizeUser } from "../util/Normalize";
 import { registerUser } from "../services/usersCrud";
 import toastEmitter from "../emitter/toastEmitter";
 import { useNavigate } from "react-router-dom";
@@ -72,7 +72,6 @@ const Register: FunctionComponent<RegisterProps> = () => {
         })
         .catch((err) => {
           toastEmitter.error("Registration Failed!");
-          console.log(err);
         });
       resetForm();
     },

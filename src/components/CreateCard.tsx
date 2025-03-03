@@ -3,11 +3,17 @@ import { FunctionComponent, useContext } from "react";
 import * as yup from "yup";
 import CardForm from "./ReusableComp/CardForm";
 import { userContext } from "../services/userContext";
+import { normalizeCard } from "../util/Normalize";
+import { useNavigate } from "react-router-dom";
+import { createCard } from "../services/cardsCrud";
+import toastEmitter from "../emitter/toastEmitter";
 
 interface CreateCardProps {}
 
 const CreateCard: FunctionComponent<CreateCardProps> = () => {
   const { user } = useContext(userContext);
+  const navigate = useNavigate();
+  const token:string= localStorage.getItem("token") || "";
 
   const formik: FormikValues = useFormik<FormikValues>({
     initialValues: {
@@ -55,7 +61,17 @@ const CreateCard: FunctionComponent<CreateCardProps> = () => {
       zip: yup.number(),
     }),
     onSubmit: (values, {resetForm}) => {
-        console.log(values);
+        const normalizedCard = normalizeCard(values);
+        createCard(normalizedCard, token)
+        .then((res) => {
+          toastEmitter.success("Card Succesfully Created!")
+          navigate("/")
+        })
+        .catch((err) => {
+          toastEmitter.error("Failed Creating Card")
+          console.log(err);
+          
+        })
         resetForm();
     },
   });

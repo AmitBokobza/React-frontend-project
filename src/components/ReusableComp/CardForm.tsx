@@ -60,10 +60,13 @@ const CardForm: FunctionComponent<CardFormProps> = ({ formik }) => {
                 formik={formik}
                 required
               />
-              <InputForm type="text" name="web" id="web" formik={formik} />
+              <InputForm type="url" name="web" id="web" formik={formik} />
             </div>
           </div>
           <div>
+            <h3 className="text-lg font-semibold light:text-gray=800 mb-3">
+              Image
+            </h3>
             <div className="grid grid-cols-2 gap-6">
               <InputForm type="url" name="url" id="url" formik={formik} />
               <InputForm type="text" name="alt" id="alt" formik={formik} />
@@ -108,7 +111,7 @@ const CardForm: FunctionComponent<CardFormProps> = ({ formik }) => {
               <InputForm type="number" name="zip" id="zip" formik={formik} />
             </div>
           </div>
-          
+
           <button
             disabled={!formik.dirty || !formik.isValid}
             type="submit"
