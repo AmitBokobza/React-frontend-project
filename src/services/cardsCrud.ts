@@ -26,6 +26,20 @@ export const getCardById = async (id:string) => {
     }
 }
 
+export const getAllMyCards = async (token:string) => {
+    try {
+        const response = await axios.get(`${API}/my-cards`, {
+            headers: {
+                "x-auth-token" : token
+            }
+        });
+        return response;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
 export const createCard = async (card:Card, token:string) => {
     try {
         const response = await axios.post(API, card, {

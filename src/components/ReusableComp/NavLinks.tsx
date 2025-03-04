@@ -7,11 +7,37 @@ interface NavLinksProps {
 }
 
 const NavLinks: FunctionComponent<NavLinksProps> = ({ user }) => {
+
+  if (user) {
+    if(user.isAdmin){
+      return (
+        <>
+          <div className="flex flex-row justify-center items-center">
+            <Link className="ml-5" to="/">
+              ABOUT
+            </Link>
+            <Link className="ml-5" to="/">
+              FAV CARDS
+            </Link>
+            <Link to="/my-cards" className="ml-5" >
+              MY CARDS
+            </Link>
+            <Link className="ml-5" to="/">
+              SANDBOX
+            </Link>
+          </div>
+        </>
+      );
+    }
+   
+  }
+
+
   if (!user) {
     return (
       <>
         <div className="flex flex-row">
-          <Link to="/">About</Link>
+          <Link className="ml-5" to="/">About</Link>
         </div>
       </>
     );
@@ -21,33 +47,14 @@ const NavLinks: FunctionComponent<NavLinksProps> = ({ user }) => {
     return (
       <>
         <div className="flex flex-row">
-          <Link to="/">ABOUT</Link>
-          <Link to="/">FAV CARDS</Link>
+          <Link className="ml-5" to="/">ABOUT</Link>
+          <Link className="ml-5" to="/">FAV CARDS</Link>
         </div>
       </>
     );
   }
 
-  if (user.isAdmin) {
-    return (
-      <>
-        <div className="flex flex-row justify-center items-center">
-          <Link className="ml-5" to="/">
-            ABOUT
-          </Link>
-          <Link className="ml-5" to="/">
-            FAV CARDS
-          </Link>
-          <Link className="ml-5" to="/">
-            MY CARDS
-          </Link>
-          <Link className="ml-5" to="/">
-            SANDBOX
-          </Link>
-        </div>
-      </>
-    );
-  }
+ 
 
   if (user.isBusiness) {
     return (
@@ -59,7 +66,7 @@ const NavLinks: FunctionComponent<NavLinksProps> = ({ user }) => {
           <Link className="ml-5" to="/">
             FAV CARDS
           </Link>
-          <Link className="ml-5" to="/">
+          <Link to="/my-cards" className="ml-5">
             MY CARDS
           </Link>
         </div>

@@ -1,11 +1,11 @@
 import { FunctionComponent, useContext, useEffect, useState } from "react";
 import Card from "../interfaces/Card/Card";
 import { getAllCards } from "../services/cardsCrud";
-import { FaPhoneAlt } from "react-icons/fa";
-import { CiHeart } from "react-icons/ci";
 import { userContext } from "../services/userContext";
 import { ThemeContext } from "./Provider/ThemeProvider";
 import { searchContext } from "../App";
+import CardLinks from "./CardLinks";
+
 
 
 interface CardsProps {}
@@ -79,15 +79,7 @@ const Cards: FunctionComponent<CardsProps> = () => {
               </p>
             </div>
             <div className="flex flex-row px-3 my-2 space-x-4">
-              <button className="accent">
-                <FaPhoneAlt />
-              </button>
-              <button className="accent">
-                <CiHeart className="text-2xl" />
-              </button>
-              {user?.isBusiness && (
-                <button className="accent">Im Business</button>
-              )}
+              <CardLinks myCardComponent={false}/>
             </div>
           </div>
         ))) : (
