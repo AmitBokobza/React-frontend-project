@@ -53,3 +53,31 @@ export const createCard = async (card:Card, token:string) => {
         
     }
 }
+
+export const likeCard = async (id:string ,token:string) => {
+    try {
+        const response = await axios.patch(`${API}/${id}`,{}, {
+            headers: {
+                "x-auth-token" : token
+            }
+        })
+        return response;
+    } catch (error) {
+        console.log(error);
+        
+    }
+}
+
+export const deleteCard = async (id:string, token:string) => {
+    try {
+        const response = await axios.delete(`${API}/${id}`, {
+            headers: {
+                "x-auth-token" : token
+            }
+        })
+        return response;
+    } catch (error) {
+        console.log(error);
+        
+    }
+}

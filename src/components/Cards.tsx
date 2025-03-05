@@ -1,7 +1,6 @@
 import { FunctionComponent, useContext, useEffect, useState } from "react";
 import Card from "../interfaces/Card/Card";
 import { getAllCards } from "../services/cardsCrud";
-import { userContext } from "../services/userContext";
 import { ThemeContext } from "./Provider/ThemeProvider";
 import { searchContext } from "../App";
 import CardLinks from "./CardLinks";
@@ -14,12 +13,14 @@ const ITEMS_PER_PAGE: number = 8;
 
 const Cards: FunctionComponent<CardsProps> = () => {
   const [cards, setCards] = useState<Card[]>([]);
-  const { user } = useContext(userContext);
   const { theme } = useContext(ThemeContext);
   const {search} = useContext(searchContext);
 
   const filteredCards = cards.filter((card) => card.title.toLowerCase().includes(search.toLowerCase()))
 
+  const deleteCardFromList = (deletedCardId: string) => {
+    setCards((prevCards) => prevCards.filter((card) => card._id !== deletedCardId));
+  };
 
   const [currentPage, setCurrentPage] = useState<number>(1);
   const totalPages = Math.ceil(filteredCards.length / ITEMS_PER_PAGE);
@@ -79,7 +80,7 @@ const Cards: FunctionComponent<CardsProps> = () => {
               </p>
             </div>
             <div className="flex flex-row px-3 my-2 space-x-4">
-              <CardLinks myCardComponent={false}/>
+              <CardLinks myCardComponent={false} card={card} deletCardFromList={deleteCardFromList}/>
             </div>
           </div>
         ))) : (

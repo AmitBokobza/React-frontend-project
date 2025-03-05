@@ -57,6 +57,12 @@ const NavUser: FunctionComponent<NavUserProps> = () => {
           <Link className="ml-5" to="/">
             <img src={person} />
           </Link>
+          <button
+            onClick={handleLogOut}
+            className="ml-3 text-sm cursor-pointer"
+          >
+            LOG OUT
+          </button>
         </div>
       </>
     );

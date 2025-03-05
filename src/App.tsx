@@ -9,6 +9,7 @@ import Home from "./components/layout/Home";
 import { createContext, useState } from "react";
 import CreateCard from "./components/CreateCard";
 import MyCards from "./components/MyCards";
+import FavCards from "./components/FavCards";
 
 export interface Quarry {
   search: string;
@@ -36,6 +37,7 @@ function App() {
               <Route path="login" element={<Login/>}/>
               <Route path="create-card" element={<CreateCard/>}/>
               <Route path="my-cards" element={<MyCards/>}/>
+              <Route path="fav-cards" element={<FavCards/>}/>
             </Route>
         </Routes>
       </Router>

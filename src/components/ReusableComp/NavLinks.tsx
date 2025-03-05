@@ -16,7 +16,7 @@ const NavLinks: FunctionComponent<NavLinksProps> = ({ user }) => {
             <Link className="ml-5" to="/">
               ABOUT
             </Link>
-            <Link className="ml-5" to="/">
+            <Link className="ml-5" to="/fav-cards">
               FAV CARDS
             </Link>
             <Link to="/my-cards" className="ml-5" >
@@ -48,7 +48,7 @@ const NavLinks: FunctionComponent<NavLinksProps> = ({ user }) => {
       <>
         <div className="flex flex-row">
           <Link className="ml-5" to="/">ABOUT</Link>
-          <Link className="ml-5" to="/">FAV CARDS</Link>
+          <Link className="ml-5" to="/fav-cards">FAV CARDS</Link>
         </div>
       </>
     );
@@ -63,7 +63,7 @@ const NavLinks: FunctionComponent<NavLinksProps> = ({ user }) => {
           <Link className="ml-5" to="/">
             ABOUT
           </Link>
-          <Link className="ml-5" to="/">
+          <Link className="ml-5" to="/fav-cards">
             FAV CARDS
           </Link>
           <Link to="/my-cards" className="ml-5">

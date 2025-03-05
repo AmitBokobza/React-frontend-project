@@ -1,46 +1,48 @@
 import { FunctionComponent, useContext, useEffect, useState } from "react";
-import { userContext } from "../services/userContext";
 import Card from "../interfaces/Card/Card";
-import { searchContext } from "../App";
-import { getAllMyCards } from "../services/cardsCrud";
-import { ThemeContext } from "./Provider/ThemeProvider";
+import { userContext } from "../services/userContext";
+import { getAllCards } from "../services/cardsCrud";
 import CardLinks from "./CardLinks";
+import { ThemeContext } from "./Provider/ThemeProvider";
+import { searchContext } from "../App";
 
+interface FavCardsProps {
+    
+}
+ 
+const FavCards: FunctionComponent<FavCardsProps> = () => {
+    const {user} = useContext(userContext);
+    const {theme} = useContext(ThemeContext);
+    const {search} = useContext(searchContext)
+    const userId = String(user?._id)
+    const [cards, setCards] = useState<Card[]>([]);
+    const favCards = cards.filter((card) => card.likes?.includes(userId));
+    const filterdFav = favCards.filter((card) => card.title.toLowerCase().includes(search.toLowerCase()))
+    useEffect(() => {
+        const fetchCards = async () => {
+            try {
+                const response = await getAllCards();
+                setCards(response?.data)
+            } catch (error) {  
+                console.log(error);
+            }
+        }
+        fetchCards();
+    },[])
 
-interface MyCardsProps {}
+    if(!user){
+        return(
+            <div className="text-center">
+                <h1 className="my-10 text-3xl">Must be Registered!</h1>
+            </div>
+        )
+    }
 
-const MyCards: FunctionComponent<MyCardsProps> = () => {
-  const { theme } = useContext(ThemeContext);
-  const { user } = useContext(userContext);
-  const { search } = useContext(searchContext);
-  const token: string = localStorage.getItem("token") || "";
-  const [myCards, setMyCards] = useState<Card[]>([]);
-  const filteredCards = myCards.filter((card) =>
-    card.title.toLowerCase().includes(search.toLowerCase())
-  );
-
-  const deleteCardFromList = (deletedCardId: string) => {
-    setMyCards((prevCards) => prevCards.filter((card) => card._id !== deletedCardId));
-  };
-
-  useEffect(() => {
-    const fetchMyCards = async () => {
-      try {
-        const response: any = await getAllMyCards(token);
-        setMyCards(response.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchMyCards();
-  }, []);
-
-  if (user?.isBusiness || user?.isAdmin) {
-    return (
-      <>
-        <div className="flex flex-wrap justify-center">
-          {filteredCards.length > 0 ? (
-            filteredCards.map((card: Card) => (
+    return(
+        <>
+            <div className="flex flex-wrap justify-center">
+          {filterdFav.length > 0 ? (
+            filterdFav.map((card: Card) => (
               <div
                 className={`w-[350px] min-h-[400px] my-10 mx-3 border rounded bg-${theme} card`}
                 key={card._id}
@@ -79,7 +81,7 @@ const MyCards: FunctionComponent<MyCardsProps> = () => {
                   </p>
                 </div>
                 <div className="flex flex-row px-3 my-2 space-x-4">
-                  <CardLinks myCardComponent={true} card={card} deletCardFromList={deleteCardFromList}/>
+                  <CardLinks myCardComponent={false} card={card}/>
                 </div>
               </div>
             ))
@@ -87,17 +89,8 @@ const MyCards: FunctionComponent<MyCardsProps> = () => {
             <p className="my-10 text-2xl ">Sorry! No cards found!</p>
           )}
         </div>
-      </>
-    );
-  } else {
-    return (
-      <div className="text-center">
-        <h1 className="text-3xl my-10">
-          No Acess! Must be Business type user!
-        </h1>
-      </div>
-    );
-  }
-};
-
-export default MyCards;
+        </>
+    )
+}
+ 
+export default FavCards;
