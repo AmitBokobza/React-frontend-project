@@ -18,6 +18,11 @@ const FavCards: FunctionComponent<FavCardsProps> = () => {
     const [cards, setCards] = useState<Card[]>([]);
     const favCards = cards.filter((card) => card.likes?.includes(userId));
     const filterdFav = favCards.filter((card) => card.title.toLowerCase().includes(search.toLowerCase()))
+
+    const deleteCardFromList = (deletedCardId: string) => {
+      setCards((prevCards) => prevCards.filter((card) => card._id !== deletedCardId));
+    };
+
     useEffect(() => {
         const fetchCards = async () => {
             try {
@@ -81,7 +86,7 @@ const FavCards: FunctionComponent<FavCardsProps> = () => {
                   </p>
                 </div>
                 <div className="flex flex-row px-3 my-2 space-x-4">
-                  <CardLinks myCardComponent={false} card={card}/>
+                  <CardLinks myCardComponent={false} card={card} deletCardFromList={deleteCardFromList}/>
                 </div>
               </div>
             ))
