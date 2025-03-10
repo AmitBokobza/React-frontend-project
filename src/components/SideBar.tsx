@@ -1,4 +1,4 @@
-import { FunctionComponent, useContext } from "react";
+import { FunctionComponent } from "react";
 import NavLinks from "./ReusableComp/NavLinks";
 import NavUser from "./ReusableComp/NavUser";
 import { IoMdClose } from "react-icons/io";

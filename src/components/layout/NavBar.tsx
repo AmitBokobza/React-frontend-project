@@ -1,6 +1,5 @@
 import { FunctionComponent, useContext, useState } from "react";
 import NavLinks from "../ReusableComp/NavLinks";
-import { userContext } from "../../services/userContext";
 import { CiSearch } from "react-icons/ci";
 import { MdDarkMode } from "react-icons/md";
 import { ThemeContext } from "../Provider/ThemeProvider";
@@ -16,7 +15,7 @@ interface NavBarProps {}
 
 
 const NavBar: FunctionComponent<NavBarProps> = () => {
-  const { user } = useContext(userContext);
+  
   const { theme, toggleTheme } = useContext(ThemeContext);
   const {setSearch} = useContext(searchContext)
   const [isOpen, setIsOpen] = useState<boolean>(false);
