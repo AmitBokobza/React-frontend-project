@@ -1,4 +1,4 @@
-import { FunctionComponent, useContext } from "react";
+import { FunctionComponent, useContext, useState } from "react";
 import NavLinks from "../ReusableComp/NavLinks";
 import { userContext } from "../../services/userContext";
 import { CiSearch } from "react-icons/ci";
@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { CiSun } from "react-icons/ci";
 import { searchContext } from "../../App";
+import SideBar from "../SideBar";
 
 
 interface NavBarProps {}
@@ -18,7 +19,11 @@ const NavBar: FunctionComponent<NavBarProps> = () => {
   const { user } = useContext(userContext);
   const { theme, toggleTheme } = useContext(ThemeContext);
   const {setSearch} = useContext(searchContext)
-  
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  const handleOpen = () => {
+    setIsOpen(!isOpen);
+  }
   
 
   return (
@@ -27,7 +32,7 @@ const NavBar: FunctionComponent<NavBarProps> = () => {
         <Link to="/">
           <h1 className="logo font-extrabold text-2xl mr-5">AmitBusiness</h1>
         </Link>
-        <NavLinks user={user} />
+        <NavLinks />
       </div>
 
       <div className="flex items-center justify-between">
@@ -51,7 +56,7 @@ const NavBar: FunctionComponent<NavBarProps> = () => {
           <button className="mx-3" onClick={toggleTheme}>
             {theme === "light" ? ( <MdDarkMode className="text-xl" />) : (<CiSun className="text-xl"/>)}
           </button>
-          <button>
+          <button onClick={handleOpen}>
             <GiHamburgerMenu className="lg:hidden text-2xl" />
           </button>
         </div>
@@ -59,6 +64,7 @@ const NavBar: FunctionComponent<NavBarProps> = () => {
           <NavUser />
         </div>
       </div>
+       <SideBar isOpen={isOpen} handleOpen={handleOpen}/>
     </nav>
   );
 };

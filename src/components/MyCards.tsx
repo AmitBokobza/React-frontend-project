@@ -6,7 +6,6 @@ import { getAllMyCards } from "../services/cardsCrud";
 import { ThemeContext } from "./Provider/ThemeProvider";
 import CardLinks from "./CardLinks";
 
-
 interface MyCardsProps {}
 
 const MyCards: FunctionComponent<MyCardsProps> = () => {
@@ -20,7 +19,9 @@ const MyCards: FunctionComponent<MyCardsProps> = () => {
   );
 
   const deleteCardFromList = (deletedCardId: string) => {
-    setMyCards((prevCards) => prevCards.filter((card) => card._id !== deletedCardId));
+    setMyCards((prevCards) =>
+      prevCards.filter((card) => card._id !== deletedCardId)
+    );
   };
 
   useEffect(() => {
@@ -38,6 +39,9 @@ const MyCards: FunctionComponent<MyCardsProps> = () => {
   if (user?.isBusiness || user?.isAdmin) {
     return (
       <>
+        <div className="text-center">
+          <h1 className="my-4 text-7xl">My Cards</h1>
+        </div>
         <div className="flex flex-wrap justify-center">
           {filteredCards.length > 0 ? (
             filteredCards.map((card: Card) => (
@@ -79,7 +83,11 @@ const MyCards: FunctionComponent<MyCardsProps> = () => {
                   </p>
                 </div>
                 <div className="flex flex-row px-3 my-2 space-x-4">
-                  <CardLinks myCardComponent={true} card={card} deletCardFromList={deleteCardFromList}/>
+                  <CardLinks
+                    myCardComponent={true}
+                    card={card}
+                    deletCardFromList={deleteCardFromList}
+                  />
                 </div>
               </div>
             ))

@@ -9,7 +9,7 @@ import toastEmitter from "../emitter/toastEmitter";
 interface CardLinksProps {
   myCardComponent?: boolean;
   card?: Card;
-  deletCardFromList: (deleteCardId: string) => void;
+  deletCardFromList?: (deleteCardId: string) => void;
 }
 
 const CardLinks: FunctionComponent<CardLinksProps> = ({
@@ -55,7 +55,9 @@ const CardLinks: FunctionComponent<CardLinksProps> = ({
             deleteCard(card?._id as string, token)
             .then((res) => {
               toastEmitter.success("Card Deleted!")
-              deletCardFromList(card?._id as string)
+              if(deletCardFromList){
+                deletCardFromList(card?._id as string)
+              }
             })
             .catch((err) => {
               toastEmitter.error("Error deleting card!")
@@ -90,7 +92,9 @@ const CardLinks: FunctionComponent<CardLinksProps> = ({
             deleteCard(card?._id as string, token)
             .then((res) => {
               toastEmitter.success("Card Deleted!")
-              deletCardFromList(card?._id as string)
+              if(deletCardFromList){
+                deletCardFromList(card?._id as string)
+              }
             })
             .catch((err) => {
               toastEmitter.error("Error deleting card!")

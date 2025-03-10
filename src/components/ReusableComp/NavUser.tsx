@@ -3,7 +3,9 @@ import { userContext } from "../../services/userContext";
 import { Link, useNavigate } from "react-router-dom";
 import person from "../../assets/person.png";
 
-interface NavUserProps {}
+interface NavUserProps {
+ 
+}
 
 const NavUser: FunctionComponent<NavUserProps> = () => {
   const { user, setUser } = useContext(userContext);
