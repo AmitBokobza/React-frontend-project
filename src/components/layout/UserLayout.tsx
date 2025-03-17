@@ -6,7 +6,11 @@ interface UserLayoutProps {}
 const UserLayout: FunctionComponent<UserLayoutProps> = () => {
   return (
     <>
-        <Outlet/>
+      <div className="flex flex-col min-h-screen">
+        <div className="flex-grow">
+          <Outlet />
+        </div>
+      </div>
     </>
   );
 };

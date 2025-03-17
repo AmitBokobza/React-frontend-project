@@ -3,9 +3,8 @@ import Card from "../interfaces/Card/Card";
 import { getAllCards } from "../services/cardsCrud";
 import { ThemeContext } from "./Provider/ThemeProvider";
 import { searchContext } from "../App";
-import CardLinks from "./CardLinks";
-
-
+import CardLinks from "./ReusableComp/CardLinks";
+import { Link } from "react-router-dom";
 
 interface CardsProps {}
 
@@ -14,12 +13,16 @@ const ITEMS_PER_PAGE: number = 8;
 const Cards: FunctionComponent<CardsProps> = () => {
   const [cards, setCards] = useState<Card[]>([]);
   const { theme } = useContext(ThemeContext);
-  const {search} = useContext(searchContext);
+  const { search } = useContext(searchContext);
 
-  const filteredCards = cards.filter((card) => card.title.toLowerCase().includes(search.toLowerCase()))
+  const filteredCards = cards.filter((card) =>
+    card.title.toLowerCase().includes(search.toLowerCase())
+  );
 
   const deleteCardFromList = (deletedCardId: string) => {
-    setCards((prevCards) => prevCards.filter((card) => card._id !== deletedCardId));
+    setCards((prevCards) =>
+      prevCards.filter((card) => card._id !== deletedCardId)
+    );
   };
 
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -43,50 +46,58 @@ const Cards: FunctionComponent<CardsProps> = () => {
   return (
     <>
       <div className="flex flex-wrap justify-center">
-        {currentCards.length > 0 ? (currentCards.map((card: Card) => (
-          <div
-            className={`w-[350px] min-h-[400px] my-10 mx-3 border rounded bg-${theme} card`}
-            key={card._id}
-          >
-            <div>
-              <img
-                className="w-full h-[200px] rounded-tl rounded-tr object-cover"
-                src={card.image.url}
-                alt={card.image.alt}
-              />
+        {currentCards.length > 0 ? (
+          currentCards.map((card: Card) => (
+            <div
+              className={`w-[350px] min-h-[400px] my-10 mx-3 border rounded bg-${theme} card`}
+              key={card._id}
+            >
+              <div>
+                <img
+                  className="w-full h-[200px] rounded-tl rounded-tr object-cover"
+                  src={card.image.url}
+                  alt={card.image.alt}
+                />
+              </div>
+              <div className="font-semibold text-2xl px-3 py-2">
+                <h3 className="hover:text-blue-600 transition-all duration-100">
+                  <Link to={`cards/${card._id}`}>{card.title}</Link>
+                </h3>
+              </div>
+              <div className="px-3 text-m text-gray-500">
+                <p>{card.description}</p>
+              </div>
+              <div className="flex flex-col p-3">
+                <p>
+                  <span className="font-semibold">Country:</span>
+                  <span className="secondary-text ml-2">
+                    {card.address.country}
+                  </span>
+                </p>
+                <p>
+                  <span className="font-semibold">City:</span>
+                  <span className="secondary-text ml-2">
+                    {card.address.city}
+                  </span>
+                </p>
+                <p>
+                  <span className="font-semibold">House Num:</span>
+                  <span className="secondary-text ml-2">
+                    {card.address.houseNumber}
+                  </span>
+                </p>
+              </div>
+              <div className="flex flex-row px-3 my-2 space-x-4">
+                <CardLinks
+                  myCardComponent={false}
+                  card={card}
+                  deletCardFromList={deleteCardFromList}
+                />
+              </div>
             </div>
-            <div className="font-semibold text-2xl px-3 py-2">
-              <h3>{card.title}</h3>
-            </div>
-            <div className="px-3 text-m text-gray-500">
-              <p>{card.description}</p>
-            </div>
-            <div className="flex flex-col p-3">
-              <p>
-                <span className="font-semibold">Country:</span>
-                <span className="secondary-text ml-2">
-                  {card.address.country}
-                </span>
-              </p>
-              <p>
-                <span className="font-semibold">City:</span>
-                <span className="secondary-text ml-2">{card.address.city}</span>
-              </p>
-              <p>
-                <span className="font-semibold">House Num:</span>
-                <span className="secondary-text ml-2">
-                  {card.address.houseNumber}
-                </span>
-              </p>
-            </div>
-            <div className="flex flex-row px-3 my-2 space-x-4">
-              <CardLinks myCardComponent={false} card={card} deletCardFromList={deleteCardFromList}/>
-            </div>
-          </div>
-        ))) : (
-          <p className="my-10 text-2xl ">
-            Sorry! No cards found!
-          </p>
+          ))
+        ) : (
+          <p className="my-10 text-2xl ">Sorry! No cards found!</p>
         )}
       </div>
       <div className="flex justify-center my-4">

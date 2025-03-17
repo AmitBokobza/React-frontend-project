@@ -10,6 +10,10 @@ import { createContext, useState } from "react";
 import CreateCard from "./components/CreateCard";
 import MyCards from "./components/MyCards";
 import FavCards from "./components/FavCards";
+import CardLanding from "./components/ReusableComp/CardLanding";
+import Footer from "./components/layout/Footer";
+import About from "./components/About";
+import EditCard from "./components/EditCard";
 
 export interface Quarry {
   search: string;
@@ -38,8 +42,12 @@ function App() {
               <Route path="create-card" element={<CreateCard/>}/>
               <Route path="my-cards" element={<MyCards/>}/>
               <Route path="fav-cards" element={<FavCards/>}/>
+              <Route path="cards/:id" element={<CardLanding/>}/>
+              <Route path="about" element={<About/>}/>
+              <Route path="edit-card/:id" element={<EditCard/>}/>
             </Route>
         </Routes>
+        <Footer/>
       </Router>
       </searchContext.Provider>
     </>

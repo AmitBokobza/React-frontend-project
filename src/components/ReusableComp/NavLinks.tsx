@@ -13,7 +13,7 @@ const NavLinks: FunctionComponent<NavLinksProps> = ({isSideBar }) => {
       return (
         <>
           <div className={`${isSideBar ? "flex flex-col" : "hidden lg:flex flex-row"} justify-center items-center`}>
-            <Link className={`ml-5 ${isSideBar && "my-5 text-2xl"}`} to="/">
+            <Link className={`ml-5 ${isSideBar && "my-5 text-2xl"}`} to="/about">
               ABOUT
             </Link>
             <Link className={`ml-5 ${isSideBar && "my-5 text-2xl"}`} to="/fav-cards">
@@ -37,7 +37,7 @@ const NavLinks: FunctionComponent<NavLinksProps> = ({isSideBar }) => {
     return (
       <>
         <div className={`${isSideBar ? "flex flex-col" : "hidden lg:flex flex-row"} justify-center items-center`}>
-          <Link className={`ml-5 ${isSideBar && "my-5 text-2xl"}`} to="/">About</Link>
+          <Link className={`ml-5 ${isSideBar && "my-5 text-2xl"}`} to="/about">About</Link>
         </div>
       </>
     );
@@ -47,7 +47,7 @@ const NavLinks: FunctionComponent<NavLinksProps> = ({isSideBar }) => {
     return (
       <>
         <div className={`${isSideBar ? "flex flex-col" : "hidden lg:flex flex-row"} justify-center items-center`}>
-          <Link className={`ml-5 ${isSideBar && "my-5 text-2xl"}`} to="/">ABOUT</Link>
+          <Link className={`ml-5 ${isSideBar && "my-5 text-2xl"}`} to="/about">ABOUT</Link>
           <Link className={`ml-5 ${isSideBar && "my-5 text-2xl"}`} to="/fav-cards">FAV CARDS</Link>
         </div>
       </>
@@ -60,7 +60,7 @@ const NavLinks: FunctionComponent<NavLinksProps> = ({isSideBar }) => {
     return (
       <>
         <div className={`${isSideBar ? "flex flex-col" : "hidden lg:flex flex-row"} justify-center items-center`}>
-          <Link className={`ml-5 ${isSideBar && "my-5 text-2xl"}`} to="/">
+          <Link className={`ml-5 ${isSideBar && "my-5 text-2xl"}`} to="/about">
             ABOUT
           </Link>
           <Link className={`ml-5 ${isSideBar && "my-5 text-2xl"}`} to="/fav-cards">

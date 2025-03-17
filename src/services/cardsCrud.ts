@@ -81,3 +81,16 @@ export const deleteCard = async (id:string, token:string) => {
         
     }
 }
+
+export const updateCard = async (id:string ,card:Card, token:string) => {
+    try {
+        const response = await axios.put(`${API}/${id}`, card, {
+            headers: {
+                "x-auth-token" : token
+            }
+        })
+        return response;
+    } catch (error) {
+        console.log(error);
+    }
+}

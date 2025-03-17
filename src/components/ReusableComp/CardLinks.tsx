@@ -1,10 +1,12 @@
 import { FunctionComponent, useContext, useState } from "react";
 import { FaPhoneAlt, FaRegTrashAlt } from "react-icons/fa";
 import { CiHeart } from "react-icons/ci";
-import { userContext } from "../services/userContext";
-import { deleteCard, likeCard } from "../services/cardsCrud";
-import Card from "../interfaces/Card/Card";
-import toastEmitter from "../emitter/toastEmitter";
+import { userContext } from "../../services/userContext";
+import { deleteCard, likeCard } from "../../services/cardsCrud";
+import Card from "../../interfaces/Card/Card";
+import toastEmitter from "../../emitter/toastEmitter";
+import { FaEdit } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 interface CardLinksProps {
   myCardComponent?: boolean;
@@ -15,11 +17,11 @@ interface CardLinksProps {
 const CardLinks: FunctionComponent<CardLinksProps> = ({
   myCardComponent,
   card,
-  deletCardFromList
+  deletCardFromList,
 }) => {
   const { user } = useContext(userContext);
   const userId = String(user?._id);
-
+  const navigate = useNavigate();
   const token: string = localStorage.getItem("token") || "";
 
   const [likeColor, setLikeColor] = useState<boolean>(() => {
@@ -51,20 +53,28 @@ const CardLinks: FunctionComponent<CardLinksProps> = ({
             className={`text-2xl ${likeColor ? `text-red-700` : `accent`}`}
           />
         </button>
-        <button className="accent cursor-pointer" onClick={() => {
+        <button
+          className="accent cursor-pointer"
+          onClick={() => {
             deleteCard(card?._id as string, token)
-            .then((res) => {
-              toastEmitter.success("Card Deleted!")
-              if(deletCardFromList){
-                deletCardFromList(card?._id as string)
-              }
-            })
-            .catch((err) => {
-              toastEmitter.error("Error deleting card!")
-            })
-
-          }}>
+              .then((res) => {
+                toastEmitter.success("Card Deleted!");
+                if (deletCardFromList) {
+                  deletCardFromList(card?._id as string);
+                }
+              })
+              .catch((err) => {
+                toastEmitter.error("Error deleting card!");
+              });
+          }}
+        >
           <FaRegTrashAlt className="text-xl" />
+        </button>
+        <button
+          className="accent cursor-pointer"
+          onClick={() => navigate(`../edit-card/${card?._id}`)}
+        >
+          <FaEdit className="text-xl" />
         </button>
       </>
     );
@@ -88,21 +98,31 @@ const CardLinks: FunctionComponent<CardLinksProps> = ({
           />
         </button>
         {myCardComponent && (
-          <button className="accent cursor-pointer" onClick={() => {
-            deleteCard(card?._id as string, token)
-            .then((res) => {
-              toastEmitter.success("Card Deleted!")
-              if(deletCardFromList){
-                deletCardFromList(card?._id as string)
-              }
-            })
-            .catch((err) => {
-              toastEmitter.error("Error deleting card!")
-            })
-
-          }}>
-            <FaRegTrashAlt className="text-xl" />
-          </button>
+          <>
+            <button
+              className="accent cursor-pointer"
+              onClick={() => {
+                deleteCard(card?._id as string, token)
+                  .then((res) => {
+                    toastEmitter.success("Card Deleted!");
+                    if (deletCardFromList) {
+                      deletCardFromList(card?._id as string);
+                    }
+                  })
+                  .catch((err) => {
+                    toastEmitter.error("Error deleting card!");
+                  });
+              }}
+            >
+              <FaRegTrashAlt className="text-xl" />
+            </button>
+            <button
+              className="accent cursor-pointer"
+              onClick={() => navigate(`../edit-card/${card?._id}`)}
+            >
+              <FaEdit className="text-xl" />
+            </button>
+          </>
         )}
       </>
     );

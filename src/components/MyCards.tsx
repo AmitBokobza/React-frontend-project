@@ -4,7 +4,8 @@ import Card from "../interfaces/Card/Card";
 import { searchContext } from "../App";
 import { getAllMyCards } from "../services/cardsCrud";
 import { ThemeContext } from "./Provider/ThemeProvider";
-import CardLinks from "./CardLinks";
+import CardLinks from "./ReusableComp/CardLinks";
+import { Link } from "react-router-dom";
 
 interface MyCardsProps {}
 
@@ -57,7 +58,9 @@ const MyCards: FunctionComponent<MyCardsProps> = () => {
                   />
                 </div>
                 <div className="font-semibold text-2xl px-3 py-2">
-                  <h3>{card.title}</h3>
+                  <h3>
+                    <Link to={`../cards/${card._id}`}>{card.title}</Link>
+                  </h3>
                 </div>
                 <div className="px-3 text-m text-gray-500">
                   <p>{card.description}</p>
