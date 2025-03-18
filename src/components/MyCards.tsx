@@ -6,10 +6,12 @@ import { getAllMyCards } from "../services/cardsCrud";
 import { ThemeContext } from "./Provider/ThemeProvider";
 import CardLinks from "./ReusableComp/CardLinks";
 import { Link } from "react-router-dom";
+import Spinner from "./ReusableComp/Spinner";
 
 interface MyCardsProps {}
 
 const MyCards: FunctionComponent<MyCardsProps> = () => {
+  const [loading, setLoading] = useState<boolean>(true);
   const { theme } = useContext(ThemeContext);
   const { user } = useContext(userContext);
   const { search } = useContext(searchContext);
@@ -32,11 +34,20 @@ const MyCards: FunctionComponent<MyCardsProps> = () => {
         setMyCards(response.data);
       } catch (error) {
         console.log(error);
+      } finally {
+        setLoading(false);
       }
     };
     fetchMyCards();
   }, []);
 
+  if (loading) {
+    return (
+      <div className="flex justify-center my-20">
+        <Spinner />
+      </div>
+    );
+  }
   if (user?.isBusiness || user?.isAdmin) {
     return (
       <>

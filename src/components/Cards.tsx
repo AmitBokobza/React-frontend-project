@@ -5,16 +5,17 @@ import { ThemeContext } from "./Provider/ThemeProvider";
 import { searchContext } from "../App";
 import CardLinks from "./ReusableComp/CardLinks";
 import { Link } from "react-router-dom";
+import Spinner from "./ReusableComp/Spinner";
 
 interface CardsProps {}
 
 const ITEMS_PER_PAGE: number = 8;
 
 const Cards: FunctionComponent<CardsProps> = () => {
+  const [loading,setLoading] = useState<boolean>(true)
   const [cards, setCards] = useState<Card[]>([]);
   const { theme } = useContext(ThemeContext);
   const { search } = useContext(searchContext);
-
   const filteredCards = cards.filter((card) =>
     card.title.toLowerCase().includes(search.toLowerCase())
   );
@@ -38,10 +39,21 @@ const Cards: FunctionComponent<CardsProps> = () => {
         setCards(response.data);
       } catch (error) {
         console.log(error);
+      }finally{
+        setLoading(false);
       }
     };
     fetchCards();
   }, []);
+
+
+  if(loading){
+    return(
+      <div className="flex justify-center my-20">
+        <Spinner/>
+      </div>
+    )
+  }
 
   return (
     <>

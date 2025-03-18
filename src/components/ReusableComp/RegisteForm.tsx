@@ -5,9 +5,13 @@ import { ThemeContext } from "../Provider/ThemeProvider";
 
 interface RegisterFormProps {
   formik: FormikValues;
+  isCreate?: boolean;
 }
 
-const RegisterForm: FunctionComponent<RegisterFormProps> = ({ formik }) => {
+const RegisterForm: FunctionComponent<RegisterFormProps> = ({
+  formik,
+  isCreate,
+}) => {
   const { theme } = useContext(ThemeContext);
   return (
     <>
@@ -58,20 +62,24 @@ const RegisterForm: FunctionComponent<RegisterFormProps> = ({ formik }) => {
                 formik={formik}
                 required
               />
-              <InputForm
-                type="email"
-                name="email"
-                id="email"
-                formik={formik}
-                required
-              />
-              <InputForm
-                type="password"
-                name="password"
-                id="password"
-                formik={formik}
-                required
-              />
+              {isCreate && (
+                <InputForm
+                  type="email"
+                  name="email"
+                  id="email"
+                  formik={formik}
+                  required
+                />
+              )}
+              {isCreate && (
+                <InputForm
+                  type="password"
+                  name="password"
+                  id="password"
+                  formik={formik}
+                  required
+                />
+              )}
             </div>
           </div>
           <div>
@@ -128,25 +136,27 @@ const RegisterForm: FunctionComponent<RegisterFormProps> = ({ formik }) => {
               />
             </div>
           </div>
-          <div className="flex items-center gap-3 mb-6">
-            <input
-              name="isBusiness"
-              id="isBusiness"
-              type="checkbox"
-              className="w-6 h-6 border border-gray-400 rounded-lg bg-gray-50 dark:bg-gray-700 focus:ring-3 focus:ring-blue-300 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:border-gray-600 transition duration-300"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              checked={formik.values.isBusiness}
-            />
-            <label
-              htmlFor="isBusiness"
-              className="text-lg font-medium light:text-gray-800"
-            >
-              Business Account?
-            </label>
-          </div>
+          {isCreate && (
+            <div className="flex items-center gap-3 mb-6">
+              <input
+                name="isBusiness"
+                id="isBusiness"
+                type="checkbox"
+                className="w-6 h-6 border border-gray-400 rounded-lg bg-gray-50 dark:bg-gray-700 focus:ring-3 focus:ring-blue-300 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:border-gray-600 transition duration-300"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                checked={formik.values.isBusiness}
+              />
+              <label
+                htmlFor="isBusiness"
+                className="text-lg font-medium light:text-gray-800"
+              >
+                Business Account?
+              </label>
+            </div>
+          )}
           <button
-            disabled={!formik.dirty || !formik.isValid}
+            disabled={isCreate ? !formik.dirty || !formik.isValid : false}
             type="submit"
             className="w-full sm:w-auto text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-8 py-4 text-center 
              dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 transition duration-300"

@@ -6,10 +6,12 @@ import CardLinks from "./ReusableComp/CardLinks";
 import { ThemeContext } from "./Provider/ThemeProvider";
 import { searchContext } from "../App";
 import { Link } from "react-router-dom";
+import Spinner from "./ReusableComp/Spinner";
 
 interface FavCardsProps {}
 
 const FavCards: FunctionComponent<FavCardsProps> = () => {
+  const [loading, setLoading] = useState<boolean>(true)
   const { user } = useContext(userContext);
   const { theme } = useContext(ThemeContext);
   const { search } = useContext(searchContext);
@@ -26,6 +28,8 @@ const FavCards: FunctionComponent<FavCardsProps> = () => {
         setCards(response?.data);
       } catch (error) {
         console.log(error);
+      }finally{
+        setLoading(false)
       }
     };
     fetchCards();
@@ -38,9 +42,21 @@ const FavCards: FunctionComponent<FavCardsProps> = () => {
       </div>
     );
   }
+  
+
+  if(loading){
+    return(
+      <div className="flex justify-center my-20">
+        <Spinner/>
+      </div>
+    )
+  }
 
   return (
     <>
+    <div className="text-center">
+      <h1 className="my-4 text-7xl">Liked Cards</h1>
+    </div>
       <div className="flex flex-wrap justify-center">
         {filterdFav.length > 0 ? (
           filterdFav.map((card: Card) => (

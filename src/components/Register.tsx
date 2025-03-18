@@ -82,7 +82,7 @@ const Register: FunctionComponent<RegisterProps> = () => {
       <div className="text-center">
         <h1 className="text-3xl my-5">Sign Up</h1>
       </div>
-      <RegisterForm formik={formik} />
+      <RegisterForm isCreate={true} formik={formik} />
     </>
   );
 };

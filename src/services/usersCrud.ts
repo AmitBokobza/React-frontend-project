@@ -22,3 +22,31 @@ export const loginUser = async (user : any) => {
         console.log(error);
     }
 }
+
+export const getUserById = async (id: string, token:string) => {
+    try {
+        const response = await axios.get(`${API}/${id}` , {
+            headers: {  
+                "x-auth-token": token
+            }
+        })
+        return response;
+    } catch (error) {
+        console.log(error);
+        
+    }
+}
+
+export const updateUser = async (id:string, user:User, token:string) => {
+    try {
+        const response = await axios.put(`${API}/${id}`, user, {
+            headers: {
+                "x-auth-token": token
+            }
+        })
+        return response;
+    } catch (error) {
+        console.log(error);
+        
+    }
+}

@@ -23,7 +23,7 @@ const NavUser: FunctionComponent<NavUserProps> = () => {
         return (
           <>
             <div className="flex flex-row justify-center items-center">
-              <Link className="ml-5" to="/">
+              <Link className="ml-5" to={`../profile-page/${user._id}`}>
                 <img src={person} />
               </Link>
               <button
@@ -56,7 +56,7 @@ const NavUser: FunctionComponent<NavUserProps> = () => {
     return (
       <>
         <div className="flex flex-row justify-center items-center">
-          <Link className="ml-5" to="/">
+          <Link className="ml-5" to={`../profile-page/${user._id}`}>
             <img src={person} />
           </Link>
           <button
@@ -76,7 +76,7 @@ const NavUser: FunctionComponent<NavUserProps> = () => {
     return (
       <>
         <div className="flex flex-row justify-center items-center">
-          <Link className="ml-5" to="/">
+          <Link className="ml-5" to={`../profile-page/${user._id}`}>
             <img src={person} />
           </Link>
           <button

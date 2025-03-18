@@ -1,4 +1,5 @@
 export default interface User {
+    _id?:string;
     name:{
         first:string;
         middle?:string;
@@ -20,4 +21,6 @@ export default interface User {
         zip:number;
     },
     isBusiness:boolean;
+    isAdmin?:boolean;
+    createdAt?:string;
 }
