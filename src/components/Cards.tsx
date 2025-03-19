@@ -6,13 +6,14 @@ import { searchContext } from "../App";
 import CardLinks from "./ReusableComp/CardLinks";
 import { Link } from "react-router-dom";
 import Spinner from "./ReusableComp/Spinner";
+import CardTemp from "./ReusableComp/CardTemp";
 
 interface CardsProps {}
 
 const ITEMS_PER_PAGE: number = 8;
 
 const Cards: FunctionComponent<CardsProps> = () => {
-  const [loading,setLoading] = useState<boolean>(true)
+  const [loading, setLoading] = useState<boolean>(true);
   const [cards, setCards] = useState<Card[]>([]);
   const { theme } = useContext(ThemeContext);
   const { search } = useContext(searchContext);
@@ -39,105 +40,76 @@ const Cards: FunctionComponent<CardsProps> = () => {
         setCards(response.data);
       } catch (error) {
         console.log(error);
-      }finally{
+      } finally {
         setLoading(false);
       }
     };
     fetchCards();
   }, []);
 
-
-  if(loading){
-    return(
+  if (loading) {
+    return (
       <div className="flex justify-center my-20">
-        <Spinner/>
+        <Spinner />
       </div>
-    )
+    );
   }
 
   return (
     <>
-      <div className="flex flex-wrap justify-center">
-        {currentCards.length > 0 ? (
-          currentCards.map((card: Card) => (
-            <div
-              className={`w-[350px] min-h-[400px] my-10 mx-3 border rounded bg-${theme} card`}
-              key={card._id}
-            >
-              <div>
-                <img
-                  className="w-full h-[200px] rounded-tl rounded-tr object-cover"
-                  src={card.image.url}
-                  alt={card.image.alt}
-                />
-              </div>
-              <div className="font-semibold text-2xl px-3 py-2">
-                <h3 className="hover:text-blue-600 transition-all duration-100">
-                  <Link to={`cards/${card._id}`}>{card.title}</Link>
-                </h3>
-              </div>
-              <div className="px-3 text-m text-gray-500">
-                <p>{card.description}</p>
-              </div>
-              <div className="flex flex-col p-3">
-                <p>
-                  <span className="font-semibold">Country:</span>
-                  <span className="secondary-text ml-2">
-                    {card.address.country}
-                  </span>
-                </p>
-                <p>
-                  <span className="font-semibold">City:</span>
-                  <span className="secondary-text ml-2">
-                    {card.address.city}
-                  </span>
-                </p>
-                <p>
-                  <span className="font-semibold">House Num:</span>
-                  <span className="secondary-text ml-2">
-                    {card.address.houseNumber}
-                  </span>
-                </p>
-              </div>
-              <div className="flex flex-row px-3 my-2 space-x-4">
+      <div className="container mx-auto px-4 py-8">
+        {currentCards.length === 0 && (
+          <div className="flex flex-col items-center justify-center min-h-[40vh] text-center">
+            <div className="text-gray-400 text-6xl mb-4">😕</div>
+            <h3 className="text-xl font-medium mb-1">Sorry! No cards found!</h3>
+            <p className="secondary-text">
+              Try adjusting your search criteria or browse all cards
+            </p>
+          </div>
+        )}
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          {currentCards.map((card: Card) => (
+            <CardTemp key={card._id} card={card}>
+              <div className="flex space-x-2 mt-2">
                 <CardLinks
                   myCardComponent={false}
                   card={card}
                   deletCardFromList={deleteCardFromList}
                 />
               </div>
-            </div>
-          ))
-        ) : (
-          <p className="my-10 text-2xl ">Sorry! No cards found!</p>
-        )}
-      </div>
-      <div className="flex justify-center my-4">
-        <button
-          className={`px-4 py-2 mx-2 border rounded ${
-            currentPage === 1
-              ? "opacity-50 cursor-not-allowed"
-              : `hover:bg-${theme} card`
-          }`}
-          onClick={() => setCurrentPage(currentPage - 1)}
-          disabled={currentPage === 1}
-        >
-          Previous
-        </button>
-        <span className="px-4 py-2">
-          {currentPage} / {totalPages}
-        </span>
-        <button
-          className={`px-4 py-2 mx-2 border rounded ${
-            currentPage === totalPages
-              ? "opacity-50 cursor-not-allowed"
-              : `hover:bg-${theme} card`
-          }`}
-          onClick={() => setCurrentPage(currentPage + 1)}
-          disabled={currentPage === totalPages}
-        >
-          Next
-        </button>
+            </CardTemp>
+          ))}
+        </div>
+
+        {/* Original pagination */}
+        <div className="flex justify-center my-4">
+          <button
+            className={`px-4 py-2 mx-2 border rounded ${
+              currentPage === 1
+                ? "opacity-50 cursor-not-allowed"
+                : `hover:bg-${theme} card`
+            }`}
+            onClick={() => setCurrentPage(currentPage - 1)}
+            disabled={currentPage === 1}
+          >
+            Previous
+          </button>
+          <span className="px-4 py-2">
+            {currentPage} / {totalPages}
+          </span>
+          <button
+            className={`px-4 py-2 mx-2 border rounded ${
+              currentPage === totalPages
+                ? "opacity-50 cursor-not-allowed"
+                : `hover:bg-${theme} card`
+            }`}
+            onClick={() => setCurrentPage(currentPage + 1)}
+            disabled={currentPage === totalPages}
+          >
+            Next
+          </button>
+        </div>
       </div>
     </>
   );

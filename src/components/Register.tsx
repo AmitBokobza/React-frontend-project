@@ -79,10 +79,18 @@ const Register: FunctionComponent<RegisterProps> = () => {
 
   return (
     <>
-      <div className="text-center">
-        <h1 className="text-3xl my-5">Sign Up</h1>
+      <div className="py-8 px-4">
+        <div className="max-w-4xl mx-auto text-center mb-10">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+            Create Account
+          </h1>
+          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-xl mx-auto">
+            Join our community to create and manage your own business cards.
+          </p>
+        </div>
+
+        <RegisterForm isCreate={true} formik={formik} />
       </div>
-      <RegisterForm isCreate={true} formik={formik} />
     </>
   );
 };

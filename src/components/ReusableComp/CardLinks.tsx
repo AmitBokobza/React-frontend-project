@@ -30,18 +30,18 @@ const CardLinks: FunctionComponent<CardLinksProps> = ({
 
   if (!user) {
     return (
-      <button className="accent">
+      <a href={`tel:${card?.phone}`} className="accent mt-1">
         <FaPhoneAlt />
-      </button>
+      </a>
     );
   }
 
   if (user.isAdmin) {
     return (
       <>
-        <button className="accent cursor-pointer">
+        <a href={`tel:${card?.phone}`} className="accent mt-1">
           <FaPhoneAlt />
-        </button>
+        </a>
         <button className="accent cursor-pointer">
           <CiHeart
             onClick={() => {
@@ -83,9 +83,9 @@ const CardLinks: FunctionComponent<CardLinksProps> = ({
   if (user.isBusiness) {
     return (
       <>
-        <button className="accent cursor-pointer">
+        <a href={`tel:${card?.phone}`} className="accent mt-1">
           <FaPhoneAlt />
-        </button>
+        </a>
         <button className="accent cursor-pointer">
           <CiHeart
             onClick={() => {
@@ -130,9 +130,9 @@ const CardLinks: FunctionComponent<CardLinksProps> = ({
 
   return (
     <>
-      <button className="accent cursor-pointer">
+      <a href={`tel:${card?.phone}`} className="accent mt-1">
         <FaPhoneAlt />
-      </button>
+      </a>
       <button className="accent cursor-pointer">
         <CiHeart
           onClick={() => {

@@ -7,6 +7,7 @@ import { ThemeContext } from "./Provider/ThemeProvider";
 import CardLinks from "./ReusableComp/CardLinks";
 import { Link } from "react-router-dom";
 import Spinner from "./ReusableComp/Spinner";
+import CardTemp from "./ReusableComp/CardTemp";
 
 interface MyCardsProps {}
 
@@ -51,64 +52,60 @@ const MyCards: FunctionComponent<MyCardsProps> = () => {
   if (user?.isBusiness || user?.isAdmin) {
     return (
       <>
-        <div className="text-center">
-          <h1 className="my-4 text-7xl">My Cards</h1>
+          <div className="container mx-auto px-4 py-8">
+      <div className="text-center mb-8">
+        <div className="inline-block bg-blue-100 dark:bg-blue-900/30 px-4 py-2 rounded-full mb-4">
+          <span className={`text-sm font-medium ${theme === 'light' 
+            ? 'text-blue-700' 
+            : 'text-blue-300'}`}>
+            Your Business Cards
+          </span>
         </div>
-        <div className="flex flex-wrap justify-center">
-          {filteredCards.length > 0 ? (
-            filteredCards.map((card: Card) => (
-              <div
-                className={`w-[350px] min-h-[400px] my-10 mx-3 border rounded bg-${theme} card`}
-                key={card._id}
-              >
-                <div>
-                  <img
-                    className="w-full h-[200px] rounded-tl rounded-tr object-cover"
-                    src={card.image.url}
-                    alt={card.image.alt}
-                  />
-                </div>
-                <div className="font-semibold text-2xl px-3 py-2">
-                  <h3>
-                    <Link to={`../cards/${card._id}`}>{card.title}</Link>
-                  </h3>
-                </div>
-                <div className="px-3 text-m text-gray-500">
-                  <p>{card.description}</p>
-                </div>
-                <div className="flex flex-col p-3">
-                  <p>
-                    <span className="font-semibold">Country:</span>
-                    <span className="secondary-text ml-2">
-                      {card.address.country}
-                    </span>
-                  </p>
-                  <p>
-                    <span className="font-semibold">City:</span>
-                    <span className="secondary-text ml-2">
-                      {card.address.city}
-                    </span>
-                  </p>
-                  <p>
-                    <span className="font-semibold">House Num:</span>
-                    <span className="secondary-text ml-2">
-                      {card.address.houseNumber}
-                    </span>
-                  </p>
-                </div>
-                <div className="flex flex-row px-3 my-2 space-x-4">
-                  <CardLinks
-                    myCardComponent={true}
-                    card={card}
-                    deletCardFromList={deleteCardFromList}
-                  />
-                </div>
+        
+        <h1 className={`text-4xl md:text-5xl lg:text-7xl font-bold ${theme === 'light' 
+          ? 'text-slate-900' 
+          : 'text-white'}`}>
+          My Cards
+        </h1>
+      </div>
+
+      {filteredCards.length === 0 ? (
+        <div className="flex flex-col items-center justify-center min-h-[40vh] text-center">
+          <div className={`text-6xl mb-4 ${theme === 'light' 
+            ? 'text-gray-400' 
+            : 'text-gray-600'}`}>
+            🤔
+          </div>
+          <p className={`text-2xl mb-2 ${theme === 'light' 
+            ? 'text-slate-800' 
+            : 'text-slate-200'}`}>
+            No cards found!
+          </p>
+          <p className={`${theme === 'light' 
+            ? 'text-gray-500' 
+            : 'text-gray-400'}`}>
+            Create your first business card to get started.
+          </p>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          {filteredCards.map((card: Card) => (
+            <CardTemp 
+              key={card._id} 
+              card={card} 
+            >
+              <div className="flex space-x-2 mt-2">
+                <CardLinks
+                  myCardComponent={true}
+                  card={card}
+                  deletCardFromList={deleteCardFromList}
+                />
               </div>
-            ))
-          ) : (
-            <p className="my-10 text-2xl ">Sorry! No cards found!</p>
-          )}
+            </CardTemp>
+          ))}
         </div>
+      )}
+    </div>
       </>
     );
   } else {

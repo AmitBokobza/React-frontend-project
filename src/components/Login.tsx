@@ -7,11 +7,13 @@ import toastEmitter from "../emitter/toastEmitter";
 import { useNavigate } from "react-router-dom";
 import { IUser, userContext } from "../services/userContext";
 import decodeUser from "../util/Decode";
+import { ThemeContext } from "./Provider/ThemeProvider";
 
 interface LoginProps {}
 
 const Login: FunctionComponent<LoginProps> = () => {
   const { setUser } = useContext(userContext);
+  const {theme} = useContext(ThemeContext)
 
   const navigate = useNavigate();
   const formik: FormikValues = useFormik<FormikValues>({
@@ -40,38 +42,43 @@ const Login: FunctionComponent<LoginProps> = () => {
     },
   });
   return (
-    <div className="container w-75 mx-auto px-4 py-8">
-      <h2 className="text-4xl font-semibold text-center light:text-gray-800 mb-6">
-        Login
-      </h2>
-      <form
-        className="max-w-md mx-auto space-y-6"
-        onSubmit={formik.handleSubmit}
-      >
-        <InputForm
-          type="email"
-          name="email"
-          id="email"
-          formik={formik}
-          required
-        />
-        <InputForm
-          type="password"
-          name="password"
-          id="password"
-          formik={formik}
-          required
-        />
-
-        <button
-          disabled={!formik.dirty || !formik.isValid}
-          type="submit"
-          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        >
+    <div className="min-h-[70vh] flex items-center justify-center px-4 py-12">
+    <div className="w-full max-w-md">
+      <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-8">
+        <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-white mb-8">
           Login
-        </button>
-      </form>
+        </h2>
+        
+        <form className="space-y-6" onSubmit={formik.handleSubmit}>
+          <InputForm
+            type="email"
+            name="email"
+            id="email"
+            formik={formik}
+            required
+          />
+          
+          <InputForm
+            type="password"
+            name="password"
+            id="password"
+            formik={formik}
+            required
+          />
+          
+          <div className="pt-2">
+            <button
+              disabled={!formik.dirty || !formik.isValid}
+              type="submit"
+              className="w-full py-3 px-4 text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors duration-200 font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-60 disabled:pointer-events-none"
+            >
+              Login
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
+  </div>
   );
 };
 
