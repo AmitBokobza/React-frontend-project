@@ -5,9 +5,9 @@ import { getAllCards } from "../services/cardsCrud";
 import CardLinks from "./ReusableComp/CardLinks";
 import { ThemeContext } from "./Provider/ThemeProvider";
 import { searchContext } from "../App";
-import { Link } from "react-router-dom";
 import Spinner from "./ReusableComp/Spinner";
 import CardTemp from "./ReusableComp/CardTemp";
+import CardNotFound from "./ReusableComp/CardNotFound";
 
 interface FavCardsProps {}
 
@@ -71,13 +71,7 @@ const FavCards: FunctionComponent<FavCardsProps> = () => {
   </div>
 
         {filterdFav.length === 0 ? (
-          <div className="flex flex-col items-center justify-center min-h-[40vh] text-center">
-            <div className="text-gray-400 text-6xl mb-4">😕</div>
-            <p className="text-2xl mb-2">Sorry! No cards found!</p>
-            <p className="text-gray-500">
-              Try liking some cards to see them here.
-            </p>
-          </div>
+         <CardNotFound theme={theme}/>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {filterdFav.map((card: Card) => (

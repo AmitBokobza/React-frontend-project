@@ -13,7 +13,7 @@ interface LoginProps {}
 
 const Login: FunctionComponent<LoginProps> = () => {
   const { setUser } = useContext(userContext);
-  const {theme} = useContext(ThemeContext)
+  const { theme } = useContext(ThemeContext);
 
   const navigate = useNavigate();
   const formik: FormikValues = useFormik<FormikValues>({
@@ -43,42 +43,57 @@ const Login: FunctionComponent<LoginProps> = () => {
   });
   return (
     <div className="min-h-[70vh] flex items-center justify-center px-4 py-12">
-    <div className="w-full max-w-md">
-      <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-8">
-        <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-white mb-8">
-          Login
-        </h2>
-        
-        <form className="space-y-6" onSubmit={formik.handleSubmit}>
-          <InputForm
-            type="email"
-            name="email"
-            id="email"
-            formik={formik}
-            required
-          />
-          
-          <InputForm
-            type="password"
-            name="password"
-            id="password"
-            formik={formik}
-            required
-          />
-          
-          <div className="pt-2">
-            <button
-              disabled={!formik.dirty || !formik.isValid}
-              type="submit"
-              className="w-full py-3 px-4 text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors duration-200 font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-60 disabled:pointer-events-none"
-            >
-              Login
-            </button>
-          </div>
-        </form>
+      <div className="w-full max-w-md">
+        <div
+          className={`${
+            theme === "dark" ? "bg-gray-800" : "bg-white"
+          } shadow-lg rounded-lg p-8`}
+        >
+          <h2
+            className={`text-3xl font-bold text-center ${
+              theme === "dark" ? "text-white" : "text-gray-800"
+            } mb-8`}
+          >
+            Login
+          </h2>
+
+          <form className="space-y-6" onSubmit={formik.handleSubmit}>
+            <InputForm
+              type="email"
+              name="email"
+              id="email"
+              formik={formik}
+              required
+            />
+
+            <InputForm
+              type="password"
+              name="password"
+              id="password"
+              formik={formik}
+              required
+            />
+
+            <div className="pt-2">
+              <button
+                disabled={!formik.dirty || !formik.isValid}
+                type="submit"
+                className={`w-full py-3 px-4 text-white ${
+                  theme === "dark"
+                    ? "bg-blue-600 hover:bg-blue-700 focus:ring-blue-800"
+                    : "bg-blue-600 hover:bg-blue-700 focus:ring-blue-500"
+                } 
+                rounded-lg transition-colors duration-200 font-medium 
+                focus:outline-none focus:ring-2 focus:ring-offset-2 
+                disabled:opacity-60 disabled:pointer-events-none`}
+              >
+                Login
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
   );
 };
 

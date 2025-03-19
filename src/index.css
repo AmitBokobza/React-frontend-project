@@ -64,6 +64,14 @@
 }
 
 .card:hover {
-    transform: scale(1.02);
+    transform: scale(1.01);
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+}
+
+.bg-light .input{
+    background-color: white;
+}
+
+.gradient-background{
+    background: linear-gradient(to right, #4f8ad5, #8e56c9)
 }

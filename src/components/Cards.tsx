@@ -4,7 +4,6 @@ import { getAllCards } from "../services/cardsCrud";
 import { ThemeContext } from "./Provider/ThemeProvider";
 import { searchContext } from "../App";
 import CardLinks from "./ReusableComp/CardLinks";
-import { Link } from "react-router-dom";
 import Spinner from "./ReusableComp/Spinner";
 import CardTemp from "./ReusableComp/CardTemp";
 

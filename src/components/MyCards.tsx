@@ -8,6 +8,7 @@ import CardLinks from "./ReusableComp/CardLinks";
 import { Link } from "react-router-dom";
 import Spinner from "./ReusableComp/Spinner";
 import CardTemp from "./ReusableComp/CardTemp";
+import CardNotFound from "./ReusableComp/CardNotFound";
 
 interface MyCardsProps {}
 
@@ -70,23 +71,7 @@ const MyCards: FunctionComponent<MyCardsProps> = () => {
       </div>
 
       {filteredCards.length === 0 ? (
-        <div className="flex flex-col items-center justify-center min-h-[40vh] text-center">
-          <div className={`text-6xl mb-4 ${theme === 'light' 
-            ? 'text-gray-400' 
-            : 'text-gray-600'}`}>
-            🤔
-          </div>
-          <p className={`text-2xl mb-2 ${theme === 'light' 
-            ? 'text-slate-800' 
-            : 'text-slate-200'}`}>
-            No cards found!
-          </p>
-          <p className={`${theme === 'light' 
-            ? 'text-gray-500' 
-            : 'text-gray-400'}`}>
-            Create your first business card to get started.
-          </p>
-        </div>
+        <CardNotFound theme={theme}/>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {filteredCards.map((card: Card) => (

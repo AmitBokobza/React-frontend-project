@@ -31,7 +31,7 @@ const SideBar: FunctionComponent<SideBarProps> = ({ isOpen, handleOpen }) => {
         } flex flex-col bg-${theme} border-l border-gray-200 dark:border-gray-700`}
       >
         
-        <div className="flex justify-between items-center p-4 border-b border-gray-200 dark:border-gray-700">
+        <div className={`flex justify-between items-center p-4 border-b ${theme === "light" ? "border-gray-200" : "border-gray-700"} `}>
           <h2 className="font-bold text-xl">Menu</h2>
           <button 
             onClick={handleOpen}
@@ -51,7 +51,7 @@ const SideBar: FunctionComponent<SideBarProps> = ({ isOpen, handleOpen }) => {
         </div>
         
        
-        <div className="p-4 border-t border-gray-200 dark:border-gray-700">
+        <div className={`p-4 border-t ${theme === "light" ? "border-gray-200" : "border-gray-700"} `}>
           <NavUser />
         </div>
       </div>

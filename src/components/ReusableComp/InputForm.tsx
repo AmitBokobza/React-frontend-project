@@ -1,5 +1,6 @@
 import { FormikValues } from "formik";
-import { FunctionComponent } from "react";
+import { FunctionComponent, useContext } from "react";
+import { ThemeContext } from "../Provider/ThemeProvider";
 
 interface InputFormProps {
   type: string;
@@ -16,37 +17,43 @@ const InputForm: FunctionComponent<InputFormProps> = ({
   id,
   formik,
 }) => {
+  const {theme} = useContext(ThemeContext);
+  
   return (
     <>
       <div className="relative w-full group">
-        <label
-          htmlFor={id}
-          className="block text-base font-medium text-gray-800 dark:text-gray-200 mb-2"
-        >
-          {name.charAt(0).toUpperCase() + name.slice(1)}
-        </label>
-        
-        <input
-          type={type}
-          name={name}
-          id={id}
-          required={required}
-          placeholder=""
-          className="block w-full py-3 px-4 text-base bg-white dark:bg-gray-700 text-gray-900 dark:text-white
-                 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm
-                 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500
-                 dark:focus:ring-blue-400 dark:focus:border-blue-400 transition-all duration-200"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values[name]}
-        />
-        
-        {formik.errors[name] && formik.touched[name] && (
-          <span className="block mt-1 text-sm text-red-600 dark:text-red-400">
-            {formik.errors[name]}
-          </span>
-        )}
-      </div>
+      <label
+        htmlFor={id}
+        className={`block text-base font-medium ${theme === "dark" ? "text-gray-200" : "text-gray-800"} mb-2`}
+      >
+        {name.charAt(0).toUpperCase() + name.slice(1)}
+        {required && <span className="text-red-500 ml-1">*</span>}
+      </label>
+      
+      <input
+        type={type}
+        name={name}
+        id={id}
+        required={required}
+        placeholder=""
+        className={`block w-full py-3 px-4 text-base 
+          ${theme === "dark" ? "bg-gray-700 text-white border-gray-600" : "bg-white text-gray-900 border-gray-300"}
+          border rounded-lg shadow-sm
+          ${theme === "dark" 
+            ? "focus:ring-blue-400 focus:border-blue-400" 
+            : "focus:ring-blue-500 focus:border-blue-500"}
+          focus:outline-none focus:ring-2 transition-all duration-200`}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        value={formik.values[name]}
+      />
+      
+      {formik.errors[name] && formik.touched[name] && (
+        <span className={`block mt-1 text-sm ${theme === "dark" ? "text-red-400" : "text-red-600"}`}>
+          {formik.errors[name]}
+        </span>
+      )}
+    </div>
     </>
   );
 };
