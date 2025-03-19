@@ -1,7 +1,7 @@
 import { FunctionComponent, useContext, useEffect, useState } from "react";
 import Card from "../interfaces/Card/Card";
 import { userContext } from "../services/userContext";
-import { getAllCards } from "../services/cardsCrud";
+import { getAllCards } from "../services/cardsApiServices";
 import CardLinks from "./ReusableComp/CardLinks";
 import { ThemeContext } from "./Provider/ThemeProvider";
 import { searchContext } from "../App";
@@ -55,23 +55,27 @@ const FavCards: FunctionComponent<FavCardsProps> = () => {
   return (
     <>
       <div className="container mx-auto px-4 py-8">
-      <div className="text-center mb-12">
-    <div className="inline-block bg-blue-100 dark:bg-blue-900/30 px-4 py-2 rounded-full mb-4">
-      <span className={`text-sm font-medium ${theme === 'light' 
-        ? 'text-blue-700' 
-        : 'text-blue-300'}`}>
-        Your Favorites
-      </span>
-    </div>
-    <h1 className={`text-4xl md:text-5xl lg:text-7xl font-extrabold ${theme === 'light' 
-      ? 'text-slate-900' 
-      : 'text-white'}`}>
-      Liked Cards
-    </h1>
-  </div>
+        <div className="text-center mb-12">
+          <div className="inline-block bg-blue-100 dark:bg-blue-900/30 px-4 py-2 rounded-full mb-4">
+            <span
+              className={`text-sm font-medium ${
+                theme === "light" ? "text-blue-700" : "text-blue-300"
+              }`}
+            >
+              Your Favorites
+            </span>
+          </div>
+          <h1
+            className={`text-4xl md:text-5xl lg:text-7xl font-extrabold ${
+              theme === "light" ? "text-slate-900" : "text-white"
+            }`}
+          >
+            Liked Cards
+          </h1>
+        </div>
 
         {filterdFav.length === 0 ? (
-         <CardNotFound theme={theme}/>
+          <CardNotFound theme={theme} />
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {filterdFav.map((card: Card) => (

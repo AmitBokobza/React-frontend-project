@@ -1,11 +1,11 @@
 import { FormikValues, useFormik } from "formik";
-import { FunctionComponent, useContext } from "react";
+import { FunctionComponent } from "react";
 import * as yup from "yup";
 import { normalizeUser } from "../util/Normalize";
-import { registerUser } from "../services/usersCrud";
 import toastEmitter from "../emitter/toastEmitter";
 import { useNavigate } from "react-router-dom";
 import RegisterForm from "./ReusableComp/RegisteForm";
+import { registerUser } from "../services/usersApiServices";
 
 interface RegisterProps {}
 
@@ -70,7 +70,7 @@ const Register: FunctionComponent<RegisterProps> = () => {
           ),
             navigate("/");
         })
-        .catch((err) => {
+        .catch(() => {
           toastEmitter.error("Registration Failed!");
         });
       resetForm();

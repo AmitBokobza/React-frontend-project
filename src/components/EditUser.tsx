@@ -1,6 +1,5 @@
 import { FunctionComponent, useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { getUserById, updateUser } from "../services/usersCrud";
 import User from "../interfaces/User";
 import { FormikValues, useFormik } from "formik";
 import * as yup from "yup";
@@ -8,6 +7,7 @@ import { normalizeUser } from "../util/Normalize";
 import toastEmitter from "../emitter/toastEmitter";
 import { userContext } from "../services/userContext";
 import RegisterForm from "./ReusableComp/RegisteForm";
+import { getUserById, updateUser } from "../services/usersApiServices";
 
 interface EditUserProps {}
 
@@ -69,16 +69,15 @@ const EditUser: FunctionComponent<EditUserProps> = () => {
       zip: yup.number().required("Zip code is required!"),
     }),
     onSubmit: (values, { resetForm }) => {
-      const normalizedUser = normalizeUser(values)
+      const normalizedUser = normalizeUser(values);
       updateUser(id as string, normalizedUser, token)
-        .then((res) => {
+        .then(() => {
           toastEmitter.success("User Succefully Updated!");
           navigate(`/profile-page/${id}`);
           resetForm();
         })
-        .catch((err) => {
+        .catch(() => {
           toastEmitter.error("Error Updating Card!");
-          console.log(err);
         });
     },
   });

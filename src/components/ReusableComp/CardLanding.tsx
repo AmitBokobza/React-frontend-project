@@ -1,7 +1,7 @@
 import { FunctionComponent, useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Card from "../../interfaces/Card/Card";
-import { getCardById } from "../../services/cardsCrud";
+import { getCardById } from "../../services/cardsApiServices";
 import { ThemeContext } from "../Provider/ThemeProvider";
 import Spinner from "./Spinner";
 import ProfileAddress from "./ProfileAddress";
@@ -14,7 +14,6 @@ const CardLanding: FunctionComponent<CardLandingProps> = () => {
   const [card, setCard] = useState<Card | null>(null);
   const { theme } = useContext(ThemeContext);
   const [loading, setLoading] = useState<boolean>(true);
-  
 
   useEffect(() => {
     const fetchCard = async () => {
@@ -74,9 +73,7 @@ const CardLanding: FunctionComponent<CardLandingProps> = () => {
             }}
           >
             {/* Gradient Accent Stripe */}
-            <div
-              className="absolute top-0 left-0 w-full h-1 gradient-background"
-            />
+            <div className="absolute top-0 left-0 w-full h-1 gradient-background" />
 
             <div className="p-6 md:p-8">
               <h1 className="text-center text-3xl md:text-4xl font-bold mb-2 break-words">
@@ -94,9 +91,7 @@ const CardLanding: FunctionComponent<CardLandingProps> = () => {
                     className="w-full h-64 object-cover"
                     loading="lazy"
                   />
-                  <div
-                    className="absolute bottom-0 left-0 w-full h-1 gradient-background"
-                  />
+                  <div className="absolute bottom-0 left-0 w-full h-1 gradient-background" />
                 </div>
               )}
 
@@ -109,9 +104,7 @@ const CardLanding: FunctionComponent<CardLandingProps> = () => {
                   theme === "dark" ? "bg-gray-800" : "bg-gray-50"
                 } mb-6 relative`}
               >
-                <div
-                  className="absolute top-0 left-0 w-1 h-full gradient-background"
-                />
+                <div className="absolute top-0 left-0 w-1 h-full gradient-background" />
                 <h3 className="text-lg font-semibold mb-4 pb-2 border-b border-gray-200 dark:border-gray-700">
                   Contact Information
                 </h3>
@@ -145,9 +138,7 @@ const CardLanding: FunctionComponent<CardLandingProps> = () => {
                   theme === "dark" ? "bg-gray-800" : "bg-gray-50"
                 } relative`}
               >
-                <div
-                  className="absolute top-0 left-0 w-1 h-full gradient-background"
-                />
+                <div className="absolute top-0 left-0 w-1 h-full gradient-background" />
                 <h3 className="text-lg font-semibold mb-4 pb-2 border-b border-gray-200 dark:border-gray-700">
                   Address
                 </h3>

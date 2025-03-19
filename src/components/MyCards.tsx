@@ -2,10 +2,9 @@ import { FunctionComponent, useContext, useEffect, useState } from "react";
 import { userContext } from "../services/userContext";
 import Card from "../interfaces/Card/Card";
 import { searchContext } from "../App";
-import { getAllMyCards } from "../services/cardsCrud";
+import { getAllMyCards } from "../services/cardsApiServices";
 import { ThemeContext } from "./Provider/ThemeProvider";
 import CardLinks from "./ReusableComp/CardLinks";
-import { Link } from "react-router-dom";
 import Spinner from "./ReusableComp/Spinner";
 import CardTemp from "./ReusableComp/CardTemp";
 import CardNotFound from "./ReusableComp/CardNotFound";
@@ -53,44 +52,45 @@ const MyCards: FunctionComponent<MyCardsProps> = () => {
   if (user?.isBusiness || user?.isAdmin) {
     return (
       <>
-          <div className="container mx-auto px-4 py-8">
-      <div className="text-center mb-8">
-        <div className="inline-block bg-blue-100 dark:bg-blue-900/30 px-4 py-2 rounded-full mb-4">
-          <span className={`text-sm font-medium ${theme === 'light' 
-            ? 'text-blue-700' 
-            : 'text-blue-300'}`}>
-            Your Business Cards
-          </span>
-        </div>
-        
-        <h1 className={`text-4xl md:text-5xl lg:text-7xl font-bold ${theme === 'light' 
-          ? 'text-slate-900' 
-          : 'text-white'}`}>
-          My Cards
-        </h1>
-      </div>
+        <div className="container mx-auto px-4 py-8">
+          <div className="text-center mb-8">
+            <div className="inline-block bg-blue-100 dark:bg-blue-900/30 px-4 py-2 rounded-full mb-4">
+              <span
+                className={`text-sm font-medium ${
+                  theme === "light" ? "text-blue-700" : "text-blue-300"
+                }`}
+              >
+                Your Business Cards
+              </span>
+            </div>
 
-      {filteredCards.length === 0 ? (
-        <CardNotFound theme={theme}/>
-      ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {filteredCards.map((card: Card) => (
-            <CardTemp 
-              key={card._id} 
-              card={card} 
+            <h1
+              className={`text-4xl md:text-5xl lg:text-7xl font-bold ${
+                theme === "light" ? "text-slate-900" : "text-white"
+              }`}
             >
-              <div className="flex space-x-2 mt-2">
-                <CardLinks
-                  myCardComponent={true}
-                  card={card}
-                  deletCardFromList={deleteCardFromList}
-                />
-              </div>
-            </CardTemp>
-          ))}
+              My Cards
+            </h1>
+          </div>
+
+          {filteredCards.length === 0 ? (
+            <CardNotFound theme={theme} />
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {filteredCards.map((card: Card) => (
+                <CardTemp key={card._id} card={card}>
+                  <div className="flex space-x-2 mt-2">
+                    <CardLinks
+                      myCardComponent={true}
+                      card={card}
+                      deletCardFromList={deleteCardFromList}
+                    />
+                  </div>
+                </CardTemp>
+              ))}
+            </div>
+          )}
         </div>
-      )}
-    </div>
       </>
     );
   } else {

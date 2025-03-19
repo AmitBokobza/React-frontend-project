@@ -1,43 +1,63 @@
 import { FunctionComponent, useContext } from "react";
 import { Link } from "react-router-dom";
-import {  userContext } from "../../services/userContext";
+import { userContext } from "../../services/userContext";
 
 interface NavLinksProps {
   isSideBar?: boolean;
 }
 
-const NavLinks: FunctionComponent<NavLinksProps> = ({isSideBar }) => {
-  const {user} = useContext(userContext);
+const NavLinks: FunctionComponent<NavLinksProps> = ({ isSideBar }) => {
+  const { user } = useContext(userContext);
   if (user) {
-    if(user.isAdmin){
+    if (user.isAdmin) {
       return (
         <>
-          <div className={`${isSideBar ? "flex flex-col" : "hidden lg:flex flex-row"} justify-center items-center`}>
-            <Link className={`ml-5 ${isSideBar && "my-5 text-2xl"}`} to="/about">
+          <div
+            className={`${
+              isSideBar ? "flex flex-col" : "hidden lg:flex flex-row"
+            } justify-center items-center`}
+          >
+            <Link
+              className={`ml-5 ${isSideBar && "my-5 text-2xl"}`}
+              to="/about"
+            >
               ABOUT
             </Link>
-            <Link className={`ml-5 ${isSideBar && "my-5 text-2xl"}`} to="/fav-cards">
+            <Link
+              className={`ml-5 ${isSideBar && "my-5 text-2xl"}`}
+              to="/fav-cards"
+            >
               FAV CARDS
             </Link>
-            <Link to="/my-cards" className={`ml-5 ${isSideBar && "my-5 text-2xl"}`} >
+            <Link
+              to="/my-cards"
+              className={`ml-5 ${isSideBar && "my-5 text-2xl"}`}
+            >
               MY CARDS
             </Link>
-            <Link className={`ml-5 ${isSideBar && "my-5 text-2xl"}`} to="/">
+            <Link
+              className={`ml-5 ${isSideBar && "my-5 text-2xl"}`}
+              to="/admin"
+            >
               SANDBOX
             </Link>
           </div>
         </>
       );
     }
-   
   }
-
 
   if (!user) {
     return (
       <>
-        <div className={`${isSideBar ? "flex flex-col" : "hidden lg:flex flex-row"} justify-center items-center`}>
-          <Link className={`ml-5 ${isSideBar && "my-5 text-2xl"}`} to="/about">About</Link>
+        <div
+          className={`${
+            isSideBar ? "flex flex-col" : "hidden lg:flex flex-row"
+          } justify-center items-center`}
+        >
+          <Link className={`ml-5 ${isSideBar && "my-5 text-2xl"}`} to="/about">
+            About
+          </Link>
         </div>
       </>
     );
@@ -46,27 +66,46 @@ const NavLinks: FunctionComponent<NavLinksProps> = ({isSideBar }) => {
   if (!user.isBusiness) {
     return (
       <>
-        <div className={`${isSideBar ? "flex flex-col" : "hidden lg:flex flex-row"} justify-center items-center`}>
-          <Link className={`ml-5 ${isSideBar && "my-5 text-2xl"}`} to="/about">ABOUT</Link>
-          <Link className={`ml-5 ${isSideBar && "my-5 text-2xl"}`} to="/fav-cards">FAV CARDS</Link>
+        <div
+          className={`${
+            isSideBar ? "flex flex-col" : "hidden lg:flex flex-row"
+          } justify-center items-center`}
+        >
+          <Link className={`ml-5 ${isSideBar && "my-5 text-2xl"}`} to="/about">
+            ABOUT
+          </Link>
+          <Link
+            className={`ml-5 ${isSideBar && "my-5 text-2xl"}`}
+            to="/fav-cards"
+          >
+            FAV CARDS
+          </Link>
         </div>
       </>
     );
   }
 
- 
-
   if (user.isBusiness) {
     return (
       <>
-        <div className={`${isSideBar ? "flex flex-col" : "hidden lg:flex flex-row"} justify-center items-center`}>
+        <div
+          className={`${
+            isSideBar ? "flex flex-col" : "hidden lg:flex flex-row"
+          } justify-center items-center`}
+        >
           <Link className={`ml-5 ${isSideBar && "my-5 text-2xl"}`} to="/about">
             ABOUT
           </Link>
-          <Link className={`ml-5 ${isSideBar && "my-5 text-2xl"}`} to="/fav-cards">
+          <Link
+            className={`ml-5 ${isSideBar && "my-5 text-2xl"}`}
+            to="/fav-cards"
+          >
             FAV CARDS
           </Link>
-          <Link to="/my-cards" className={`ml-5 ${isSideBar && "my-5 text-2xl" }`}>
+          <Link
+            to="/my-cards"
+            className={`ml-5 ${isSideBar && "my-5 text-2xl"}`}
+          >
             MY CARDS
           </Link>
         </div>

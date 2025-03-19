@@ -50,3 +50,29 @@ export const updateUser = async (id:string, user:User, token:string) => {
         
     }
 }
+
+export const getAllUsers = async (token:string) => {
+    try {
+        const response = await axios.get(API, {
+            headers: {
+                "x-auth-token" : token
+            }
+        })
+        return response;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const deleteUser = async (id:string, token:string) => {
+    try {
+        const response = await axios.delete(`${API}/${id}`, {
+            headers: {
+                "x-auth-token" : token
+            }
+        })
+        return response;
+    } catch (error) {
+        console.log(error);
+    }
+}

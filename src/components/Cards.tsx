@@ -1,6 +1,6 @@
 import { FunctionComponent, useContext, useEffect, useState } from "react";
 import Card from "../interfaces/Card/Card";
-import { getAllCards } from "../services/cardsCrud";
+import { getAllCards } from "../services/cardsApiServices";
 import { ThemeContext } from "./Provider/ThemeProvider";
 import { searchContext } from "../App";
 import CardLinks from "./ReusableComp/CardLinks";
@@ -81,7 +81,6 @@ const Cards: FunctionComponent<CardsProps> = () => {
           ))}
         </div>
 
-        {/* Original pagination */}
         <div className="flex justify-center my-4">
           <button
             className={`px-4 py-2 mx-2 border rounded ${

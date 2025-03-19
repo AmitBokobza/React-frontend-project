@@ -2,7 +2,7 @@ import { FunctionComponent, useContext } from "react";
 import InputForm from "./ReusableComp/InputForm";
 import { FormikValues, useFormik } from "formik";
 import * as yup from "yup";
-import { loginUser } from "../services/usersCrud";
+import { loginUser } from "../services/usersApiServices";
 import toastEmitter from "../emitter/toastEmitter";
 import { useNavigate } from "react-router-dom";
 import { IUser, userContext } from "../services/userContext";

@@ -1,7 +1,7 @@
 import { FunctionComponent, useContext, useEffect, useState } from "react";
 import Card from "../interfaces/Card/Card";
 import { useNavigate, useParams } from "react-router-dom";
-import { getCardById, updateCard } from "../services/cardsCrud";
+import { getCardById, updateCard } from "../services/cardsApiServices";
 import { userContext } from "../services/userContext";
 import { FormikValues, useFormik } from "formik";
 import * as yup from "yup";
@@ -79,34 +79,33 @@ const EditCard: FunctionComponent<EditCardProps> = () => {
     onSubmit: (values, { resetForm }) => {
       const normalizedCard = normalizeCard(values);
       updateCard(id as string, normalizedCard, token)
-      .then((res) => {
-        toastEmitter.success("Card Updated!")
-        navigate("/my-cards")
-      })
-      .catch((err) => {
-        toastEmitter.error("Failed Creating Card")
-        console.log(err)
-      });
+        .then((res) => {
+          toastEmitter.success("Card Updated!");
+          navigate("/my-cards");
+        })
+        .catch((err) => {
+          toastEmitter.error("Failed Creating Card");
+          console.log(err);
+        });
       resetForm();
-    }
+    },
   });
-  
-  if(user?._id === card?.user_id || user?.isAdmin){
+
+  if (user?._id === card?.user_id || user?.isAdmin) {
     return (
-        <>
+      <>
         <div className="text-center">
           <h1 className="text-3xl my-5">Edit Card</h1>
         </div>
         <CardForm formik={formik} />
       </>
-    )
-  }
-  else{
-    return(
-        <div className="text-center">
-            <h1 className="text-3xl my-10">No Acess!</h1>
-        </div>
-    )
+    );
+  } else {
+    return (
+      <div className="text-center">
+        <h1 className="text-3xl my-10">No Acess!</h1>
+      </div>
+    );
   }
 };
 

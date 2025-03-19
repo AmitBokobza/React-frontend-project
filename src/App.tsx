@@ -16,6 +16,9 @@ import About from "./components/About";
 import EditCard from "./components/EditCard";
 import ProfilePage from "./components/ProfilePage";
 import EditUser from "./components/EditUser";
+import PageNotFound from "./components/ReusableComp/PageNotFound";
+import AdminLayout from "./components/layout/AdminLayout";
+import UserManager from "./components/UserManager";
 
 export interface Quarry {
   search: string;
@@ -49,6 +52,10 @@ function App() {
               <Route path="edit-card/:id" element={<EditCard/>}/>
               <Route path="profile-page/:id" element={<ProfilePage/>}/>
               <Route path="edit-user/:id" element={<EditUser/>}/>
+              <Route path="*" element={<PageNotFound/>}/>
+            </Route>
+            <Route path="/admin" element={<AdminLayout/>}>
+              <Route index element={<UserManager/>}/>
             </Route>
         </Routes>
         <Footer/>

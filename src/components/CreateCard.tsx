@@ -5,7 +5,7 @@ import CardForm from "./ReusableComp/CardForm";
 import { userContext } from "../services/userContext";
 import { normalizeCard } from "../util/Normalize";
 import { useNavigate } from "react-router-dom";
-import { createCard } from "../services/cardsCrud";
+import { createCard } from "../services/cardsApiServices";
 import toastEmitter from "../emitter/toastEmitter";
 
 interface CreateCardProps {}
@@ -13,7 +13,7 @@ interface CreateCardProps {}
 const CreateCard: FunctionComponent<CreateCardProps> = () => {
   const { user } = useContext(userContext);
   const navigate = useNavigate();
-  const token:string= localStorage.getItem("token") || "";
+  const token: string = localStorage.getItem("token") || "";
 
   const formik: FormikValues = useFormik<FormikValues>({
     initialValues: {
@@ -60,19 +60,18 @@ const CreateCard: FunctionComponent<CreateCardProps> = () => {
       houseNum: yup.number().min(1).required("House Number is required!"),
       zip: yup.number(),
     }),
-    onSubmit: (values, {resetForm}) => {
-        const normalizedCard = normalizeCard(values);
-        createCard(normalizedCard, token)
+    onSubmit: (values, { resetForm }) => {
+      const normalizedCard = normalizeCard(values);
+      createCard(normalizedCard, token)
         .then((res) => {
-          toastEmitter.success("Card Succesfully Created!")
-          navigate("/")
+          toastEmitter.success("Card Succesfully Created!");
+          navigate("/");
         })
         .catch((err) => {
-          toastEmitter.error("Failed Creating Card")
+          toastEmitter.error("Failed Creating Card");
           console.log(err);
-          
-        })
-        resetForm();
+        });
+      resetForm();
     },
   });
 
@@ -85,13 +84,14 @@ const CreateCard: FunctionComponent<CreateCardProps> = () => {
         <CardForm formik={formik} />
       </>
     );
-  }
-  else{
+  } else {
     return (
-        <div className="text-center">
-            <h1 className="text-3xl my-10">No Acess! Must be Business type user!</h1>
-        </div>
-    )
+      <div className="text-center">
+        <h1 className="text-3xl my-10">
+          No Acess! Must be Business type user!
+        </h1>
+      </div>
+    );
   }
 };
 

@@ -2,8 +2,6 @@ import { FunctionComponent, ReactNode, useEffect, useState } from "react";
 import decodeUser from "../../util/Decode";
 import { IUser, userContext } from "../../services/userContext";
 
-
-
 interface UserProviderProps {
   children: ReactNode;
 }
@@ -21,11 +19,11 @@ const UserProvider: FunctionComponent<UserProviderProps> = ({ children }) => {
         console.log(error);
       }
     }
-  },[]);
+  }, []);
 
   return (
-    <userContext.Provider value={{user, setUser}}>
-        {children}
+    <userContext.Provider value={{ user, setUser }}>
+      {children}
     </userContext.Provider>
   );
 };

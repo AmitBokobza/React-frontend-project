@@ -1,19 +1,21 @@
 import { FunctionComponent, useContext, useEffect, useState } from "react";
 import { userContext } from "../services/userContext";
 import { ThemeContext } from "./Provider/ThemeProvider";
-import { getUserById } from "../services/usersCrud";
 import User from "../interfaces/User";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ProfileHeader from "./ReusableComp/ProfileHeader";
 import ProfileContact from "./ReusableComp/ProfileContact";
 import ProfileAddress from "./ReusableComp/ProfileAddress";
+import Spinner from "./ReusableComp/Spinner";
+import { getUserById } from "../services/usersApiServices";
 
 interface ProfilePageProps {}
 
 const ProfilePage: FunctionComponent<ProfilePageProps> = () => {
   const navigate = useNavigate();
+  const { id } = useParams();
   const { user } = useContext(userContext);
-  const userId = String(user?._id);
+  const userId = String(id);
   const { theme } = useContext(ThemeContext);
   const token: string = localStorage.getItem("token") || "";
   const [loggedUser, setLoggedUser] = useState<User | null>(null);
@@ -40,7 +42,11 @@ const ProfilePage: FunctionComponent<ProfilePageProps> = () => {
   }, [user, token]);
 
   if (loading) {
-    return <p>loading</p>;
+    return (
+      <div className="flex justify-center my-20">
+        <Spinner />
+      </div>
+    );
   }
 
   if (!user || !token) {
@@ -64,7 +70,6 @@ const ProfilePage: FunctionComponent<ProfilePageProps> = () => {
               theme === "dark" ? "gray-800" : "white"
             } shadow-xl p-6 md:p-10 rounded-xl card border border-gray-200 dark:border-gray-700`}
           >
- 
             <ProfileHeader loggedUser={loggedUser} user={user} />
 
             <div
@@ -96,7 +101,7 @@ const ProfilePage: FunctionComponent<ProfilePageProps> = () => {
                 Address Information
               </h2>
 
-              <ProfileAddress loggedUser={loggedUser}/>
+              <ProfileAddress loggedUser={loggedUser} />
             </div>
 
             <div className="mt-8 flex justify-center">
