@@ -138,7 +138,7 @@ const UserTable: FunctionComponent<UserTableProps> = ({
                       <Link
                         to={`/profile-page/${user._id}`}
                         className={`
-                        hover:text-blue-500 transition-colors duration-200
+                        hover:text-blue-600 transition-colors duration-200
                         ${
                           theme === "dark"
                             ? "text-blue-400/70 hover:text-blue-400"

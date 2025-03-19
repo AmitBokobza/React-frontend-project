@@ -8,6 +8,7 @@ import * as yup from "yup";
 import { normalizeCard } from "../util/Normalize";
 import toastEmitter from "../emitter/toastEmitter";
 import CardForm from "./ReusableComp/CardForm";
+import NoAccess from "./ReusableComp/NoAccess";
 
 interface EditCardProps {}
 
@@ -102,9 +103,7 @@ const EditCard: FunctionComponent<EditCardProps> = () => {
     );
   } else {
     return (
-      <div className="text-center">
-        <h1 className="text-3xl my-10">No Acess!</h1>
-      </div>
+      <NoAccess/>
     );
   }
 };

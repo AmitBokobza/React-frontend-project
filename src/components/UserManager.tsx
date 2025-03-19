@@ -6,6 +6,7 @@ import { ThemeContext } from "./Provider/ThemeProvider";
 import UserTable from "./ReusableComp/UserTable";
 import UserManagerHeader from "./ReusableComp/UserManagerHeader";
 import { getAllUsers } from "../services/usersApiServices";
+import NoAccess from "./ReusableComp/NoAccess";
 
 interface UserManagerProps {}
 
@@ -96,6 +97,8 @@ const UserManager: FunctionComponent<UserManagerProps> = () => {
         </div>
       </>
     );
+  } else {
+    return <NoAccess />;
   }
 };
 

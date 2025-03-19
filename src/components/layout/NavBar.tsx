@@ -37,7 +37,7 @@ const NavBar: FunctionComponent<NavBarProps> = () => {
               </h1>
             </Link>
             
-            <div className="hidden md:ml-8 md:flex">
+            <div className="hidden xl:ml-8 xl:flex">
               <NavLinks />
             </div>
           </div>
@@ -60,14 +60,14 @@ const NavBar: FunctionComponent<NavBarProps> = () => {
 
             <button 
               onClick={handleOpen}
-              className="p-2 rounded-full md:hidden hover:bg-gray-200/30 transition-colors"
+              className="p-2 rounded-full xl:hidden hover:bg-gray-200/30 transition-colors"
               aria-label="Open mobile menu"
             >
               <GiHamburgerMenu className="text-xl" />
             </button>
 
           
-            <div className="hidden md:flex items-center ml-2">
+            <div className="hidden xl:flex items-center ml-2">
               <NavUser />
             </div>
           </div>

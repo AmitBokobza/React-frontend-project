@@ -8,6 +8,7 @@ import toastEmitter from "../emitter/toastEmitter";
 import { userContext } from "../services/userContext";
 import RegisterForm from "./ReusableComp/RegisteForm";
 import { getUserById, updateUser } from "../services/usersApiServices";
+import NoAccess from "./ReusableComp/NoAccess";
 
 interface EditUserProps {}
 
@@ -91,11 +92,9 @@ const EditUser: FunctionComponent<EditUserProps> = () => {
         <RegisterForm formik={formik} />
       </>
     );
-  } else {
+  } else{
     return (
-      <div className="text-center">
-        <h1 className="text-3xl my-10">No Acess!</h1>
-      </div>
+     <NoAccess/>
     );
   }
 };

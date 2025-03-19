@@ -7,6 +7,7 @@ import { normalizeCard } from "../util/Normalize";
 import { useNavigate } from "react-router-dom";
 import { createCard } from "../services/cardsApiServices";
 import toastEmitter from "../emitter/toastEmitter";
+import NoAccess from "./ReusableComp/NoAccess";
 
 interface CreateCardProps {}
 
@@ -86,11 +87,7 @@ const CreateCard: FunctionComponent<CreateCardProps> = () => {
     );
   } else {
     return (
-      <div className="text-center">
-        <h1 className="text-3xl my-10">
-          No Acess! Must be Business type user!
-        </h1>
-      </div>
+      <NoAccess/>
     );
   }
 };
