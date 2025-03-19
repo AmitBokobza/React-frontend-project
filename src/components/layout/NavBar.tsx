@@ -6,7 +6,6 @@ import NavUser from "../ReusableComp/NavUser";
 import { Link } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { CiSun } from "react-icons/ci";
-import { searchContext } from "../../App";
 import SideBar from "../SideBar";
 import SearchBar from "../ReusableComp/SearchBar";
 
@@ -17,7 +16,6 @@ interface NavBarProps {}
 const NavBar: FunctionComponent<NavBarProps> = () => {
   
   const { theme, toggleTheme } = useContext(ThemeContext);
-  const {setSearch} = useContext(searchContext)
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const handleOpen = () => {
