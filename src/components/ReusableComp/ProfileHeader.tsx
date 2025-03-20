@@ -1,11 +1,9 @@
 import { FunctionComponent, useContext } from "react";
 import User from "../../interfaces/User";
-import { IUser } from "../../services/userContext";
 import { ThemeContext } from "../Provider/ThemeProvider";
 
 interface ProfileHeaderProps {
   loggedUser: User;
-  user: IUser;
 }
 
 const ProfileHeader: FunctionComponent<ProfileHeaderProps> = ({
