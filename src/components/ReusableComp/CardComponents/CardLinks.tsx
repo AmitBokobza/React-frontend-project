@@ -1,10 +1,10 @@
 import { FunctionComponent, useContext, useState } from "react";
 import { FaPhoneAlt, FaRegTrashAlt } from "react-icons/fa";
 import { CiHeart } from "react-icons/ci";
-import { userContext } from "../../services/userContext";
-import { deleteCard, likeCard } from "../../services/cardsApiServices";
-import Card from "../../interfaces/Card/Card";
-import toastEmitter from "../../emitter/toastEmitter";
+import { userContext } from "../../../services/userContext";
+import { deleteCard, likeCard } from "../../../services/cardsApiServices";
+import Card from "../../../interfaces/Card/Card";
+import toastEmitter from "../../../emitter/toastEmitter";
 import { FaEdit } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 

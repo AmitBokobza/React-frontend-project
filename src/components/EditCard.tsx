@@ -7,7 +7,7 @@ import { FormikValues, useFormik } from "formik";
 import * as yup from "yup";
 import { normalizeCard } from "../util/Normalize";
 import toastEmitter from "../emitter/toastEmitter";
-import CardForm from "./ReusableComp/CardForm";
+import CardForm from "./ReusableComp/CardComponents/CardForm";
 import NoAccess from "./ReusableComp/NoAccess";
 
 interface EditCardProps {}
@@ -93,9 +93,7 @@ const EditCard: FunctionComponent<EditCardProps> = () => {
   });
 
   if (!user) {
-    return (
-      <NoAccess/>
-    )
+    return <NoAccess />;
   }
   if (String(user?._id) === card?.user_id || user?.isAdmin) {
     return (
@@ -106,11 +104,9 @@ const EditCard: FunctionComponent<EditCardProps> = () => {
         <CardForm formik={formik} />
       </>
     );
-  } 
-  
-    return (
-      <NoAccess/>
-    );
-  };
+  }
+
+  return <NoAccess />;
+};
 
 export default EditCard;

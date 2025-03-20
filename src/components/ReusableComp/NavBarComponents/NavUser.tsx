@@ -1,7 +1,7 @@
 import { FunctionComponent, useContext } from "react";
-import { userContext } from "../../services/userContext";
+import { userContext } from "../../../services/userContext";
 import { Link, useNavigate } from "react-router-dom";
-import person from "../../assets/person.png";
+import person from "../../../assets/person.png";
 
 interface NavUserProps {}
 

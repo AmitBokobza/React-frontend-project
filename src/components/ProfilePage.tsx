@@ -5,7 +5,7 @@ import User from "../interfaces/User";
 import { useNavigate, useParams } from "react-router-dom";
 import ProfileHeader from "./ReusableComp/ProfileHeader";
 import ProfileContact from "./ReusableComp/ProfileContact";
-import ProfileAddress from "./ReusableComp/ProfileAddress";
+import ProfileAddress from "./ReusableComp/ProfileComponents/ProfileAddress";
 import Spinner from "./ReusableComp/Spinner";
 import { getUserById } from "../services/usersApiServices";
 import ProfileNotFound from "./ReusableComp/ProfileNotFound";
@@ -52,9 +52,7 @@ const ProfilePage: FunctionComponent<ProfilePageProps> = () => {
   }
 
   if (!user || !token) {
-    return (
-     <NoAccess/>
-    );
+    return <NoAccess />;
   }
 
   if (loggedUser) {
@@ -124,12 +122,12 @@ const ProfilePage: FunctionComponent<ProfilePageProps> = () => {
         </div>
       </>
     );
-  }else{
-    return(
+  } else {
+    return (
       <div className="container mx-auto px-4 py-8">
-        <ProfileNotFound theme={theme}/>
+        <ProfileNotFound theme={theme} />
       </div>
-    )
+    );
   }
 };
 

@@ -4,7 +4,7 @@ import * as yup from "yup";
 import { normalizeUser } from "../util/Normalize";
 import toastEmitter from "../emitter/toastEmitter";
 import { useNavigate } from "react-router-dom";
-import RegisterForm from "./ReusableComp/RegisteForm";
+import RegisterForm from "./ReusableComp/RegisterComponents/RegisteForm";
 import { registerUser } from "../services/usersApiServices";
 
 interface RegisterProps {}

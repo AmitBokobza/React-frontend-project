@@ -4,10 +4,10 @@ import Card from "../interfaces/Card/Card";
 import { searchContext } from "../App";
 import { getAllMyCards } from "../services/cardsApiServices";
 import { ThemeContext } from "./Provider/ThemeProvider";
-import CardLinks from "./ReusableComp/CardLinks";
+import CardLinks from "./ReusableComp/CardComponents/CardLinks";
 import Spinner from "./ReusableComp/Spinner";
-import CardTemp from "./ReusableComp/CardTemp";
-import CardNotFound from "./ReusableComp/CardNotFound";
+import CardTemp from "./ReusableComp/CardComponents/CardTemp";
+import CardNotFound from "./ReusableComp/CardComponents/CardNotFound";
 import NoAccess from "./ReusableComp/NoAccess";
 
 interface MyCardsProps {}
@@ -95,9 +95,7 @@ const MyCards: FunctionComponent<MyCardsProps> = () => {
       </>
     );
   } else {
-    return (
-     <NoAccess/>
-    );
+    return <NoAccess />;
   }
 };
 

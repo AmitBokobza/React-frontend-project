@@ -1,6 +1,6 @@
 import { FunctionComponent, useContext } from "react";
 import { Link } from "react-router-dom";
-import { userContext } from "../../services/userContext";
+import { userContext } from "../../../services/userContext";
 
 interface NavLinksProps {
   isSideBar?: boolean;
@@ -18,25 +18,33 @@ const NavLinks: FunctionComponent<NavLinksProps> = ({ isSideBar }) => {
             } justify-center items-center`}
           >
             <Link
-              className={`ml-5 ${isSideBar && "my-5 text-2xl"} p-1 rounded-full hover:bg-gray-200/30 transition-colors`}
+              className={`ml-5 ${
+                isSideBar && "my-5 text-2xl"
+              } p-1 rounded-full hover:bg-gray-200/30 transition-colors`}
               to="/about"
             >
               ABOUT
             </Link>
             <Link
-              className={`ml-5 ${isSideBar && "my-5 text-2xl"} p-1 rounded-full hover:bg-gray-200/30 transition-colors`}
+              className={`ml-5 ${
+                isSideBar && "my-5 text-2xl"
+              } p-1 rounded-full hover:bg-gray-200/30 transition-colors`}
               to="/fav-cards"
             >
               FAV CARDS
             </Link>
             <Link
               to="/my-cards"
-              className={`ml-5 ${isSideBar && "my-5 text-2xl"} p-1 rounded-full hover:bg-gray-200/30 transition-colors`}
+              className={`ml-5 ${
+                isSideBar && "my-5 text-2xl"
+              } p-1 rounded-full hover:bg-gray-200/30 transition-colors`}
             >
               MY CARDS
             </Link>
             <Link
-              className={`ml-5 ${isSideBar && "my-5 text-2xl"} p-1 rounded-full hover:bg-gray-200/30 transition-colors`}
+              className={`ml-5 ${
+                isSideBar && "my-5 text-2xl"
+              } p-1 rounded-full hover:bg-gray-200/30 transition-colors`}
               to="/admin"
             >
               SANDBOX
@@ -55,7 +63,12 @@ const NavLinks: FunctionComponent<NavLinksProps> = ({ isSideBar }) => {
             isSideBar ? "flex flex-col" : "hidden lg:flex flex-row"
           } justify-center items-center`}
         >
-          <Link className={`ml-5 ${isSideBar && "my-5 text-2xl"} p-1 rounded-full hover:bg-gray-200/30 transition-colors`} to="/about">
+          <Link
+            className={`ml-5 ${
+              isSideBar && "my-5 text-2xl"
+            } p-1 rounded-full hover:bg-gray-200/30 transition-colors`}
+            to="/about"
+          >
             About
           </Link>
         </div>
@@ -71,11 +84,18 @@ const NavLinks: FunctionComponent<NavLinksProps> = ({ isSideBar }) => {
             isSideBar ? "flex flex-col" : "hidden lg:flex flex-row"
           } justify-center items-center`}
         >
-          <Link className={`ml-5 ${isSideBar && "my-5 text-2xl"} p-1 rounded-full hover:bg-gray-200/30 transition-colors`} to="/about">
+          <Link
+            className={`ml-5 ${
+              isSideBar && "my-5 text-2xl"
+            } p-1 rounded-full hover:bg-gray-200/30 transition-colors`}
+            to="/about"
+          >
             ABOUT
           </Link>
           <Link
-            className={`ml-5 ${isSideBar && "my-5 text-2xl"} p-1 rounded-full hover:bg-gray-200/30 transition-colors`}
+            className={`ml-5 ${
+              isSideBar && "my-5 text-2xl"
+            } p-1 rounded-full hover:bg-gray-200/30 transition-colors`}
             to="/fav-cards"
           >
             FAV CARDS
@@ -93,18 +113,27 @@ const NavLinks: FunctionComponent<NavLinksProps> = ({ isSideBar }) => {
             isSideBar ? "flex flex-col" : "hidden lg:flex flex-row"
           } justify-center items-center`}
         >
-          <Link className={`ml-5 ${isSideBar && "my-5 text-2xl"} p-1 rounded-full hover:bg-gray-200/30 transition-colors` } to="/about">
+          <Link
+            className={`ml-5 ${
+              isSideBar && "my-5 text-2xl"
+            } p-1 rounded-full hover:bg-gray-200/30 transition-colors`}
+            to="/about"
+          >
             ABOUT
           </Link>
           <Link
-            className={`ml-5 ${isSideBar && "my-5 text-2xl"} p-1 rounded-full hover:bg-gray-200/30 transition-colors`}
+            className={`ml-5 ${
+              isSideBar && "my-5 text-2xl"
+            } p-1 rounded-full hover:bg-gray-200/30 transition-colors`}
             to="/fav-cards"
           >
             FAV CARDS
           </Link>
           <Link
             to="/my-cards"
-            className={`ml-5 ${isSideBar && "my-5 text-2xl"} p-1 rounded-full hover:bg-gray-200/30 transition-colors`}
+            className={`ml-5 ${
+              isSideBar && "my-5 text-2xl"
+            } p-1 rounded-full hover:bg-gray-200/30 transition-colors`}
           >
             MY CARDS
           </Link>

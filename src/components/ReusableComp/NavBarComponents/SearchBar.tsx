@@ -1,16 +1,20 @@
 import { FunctionComponent, useContext } from "react";
 import { CiSearch } from "react-icons/ci";
-import { searchContext } from "../../App";
+import { searchContext } from "../../../App";
 
 interface SearchBarProps {
-    isSideBar?:boolean
+  isSideBar?: boolean;
 }
 
-const SearchBar: FunctionComponent<SearchBarProps> = ({isSideBar}) => {
+const SearchBar: FunctionComponent<SearchBarProps> = ({ isSideBar }) => {
   const { setSearch } = useContext(searchContext);
   return (
     <>
-      <div className={`${isSideBar ? "flex w-full px-4 my-4" : "hidden md:flex"} items-center`}>
+      <div
+        className={`${
+          isSideBar ? "flex w-full px-4 my-4" : "hidden md:flex"
+        } items-center`}
+      >
         <div className="relative">
           <input
             type="text"

@@ -1,7 +1,7 @@
 import { FunctionComponent, ReactNode, useContext } from "react";
-import  Card  from "../../interfaces/Card/Card";
+import  Card  from "../../../interfaces/Card/Card";
 import { Link } from "react-router-dom";
-import { ThemeContext } from "../Provider/ThemeProvider";
+import { ThemeContext } from "../../Provider/ThemeProvider";
 
 interface CardTempProps {
   card: Card;

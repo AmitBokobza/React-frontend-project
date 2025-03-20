@@ -3,10 +3,10 @@ import Card from "../interfaces/Card/Card";
 import { getAllCards } from "../services/cardsApiServices";
 import { ThemeContext } from "./Provider/ThemeProvider";
 import { searchContext } from "../App";
-import CardLinks from "./ReusableComp/CardLinks";
+import CardLinks from "./ReusableComp/CardComponents/CardLinks";
 import Spinner from "./ReusableComp/Spinner";
-import CardTemp from "./ReusableComp/CardTemp";
-import CardNotFound from "./ReusableComp/CardNotFound";
+import CardTemp from "./ReusableComp/CardComponents/CardTemp";
+import CardNotFound from "./ReusableComp/CardComponents/CardNotFound";
 
 interface CardsProps {}
 
@@ -58,9 +58,7 @@ const Cards: FunctionComponent<CardsProps> = () => {
   return (
     <>
       <div className="container mx-auto px-4 py-8">
-        {currentCards.length === 0 && (
-          <CardNotFound theme={theme}/>
-        )}
+        {currentCards.length === 0 && <CardNotFound theme={theme} />}
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {currentCards.map((card: Card) => (

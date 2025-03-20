@@ -1,7 +1,7 @@
 import { FormikValues, useFormik } from "formik";
 import { FunctionComponent, useContext } from "react";
 import * as yup from "yup";
-import CardForm from "./ReusableComp/CardForm";
+import CardForm from "./ReusableComp/CardComponents/CardForm";
 import { userContext } from "../services/userContext";
 import { normalizeCard } from "../util/Normalize";
 import { useNavigate } from "react-router-dom";
@@ -85,9 +85,7 @@ const CreateCard: FunctionComponent<CreateCardProps> = () => {
       </>
     );
   } else {
-    return (
-      <NoAccess/>
-    );
+    return <NoAccess />;
   }
 };
 

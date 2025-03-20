@@ -1,10 +1,10 @@
 import { FunctionComponent, useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Card from "../../interfaces/Card/Card";
-import { getCardById } from "../../services/cardsApiServices";
-import { ThemeContext } from "../Provider/ThemeProvider";
-import Spinner from "./Spinner";
-import ProfileAddress from "./ProfileAddress";
+import Card from "../../../interfaces/Card/Card";
+import { getCardById } from "../../../services/cardsApiServices";
+import { ThemeContext } from "../../Provider/ThemeProvider";
+import Spinner from "../Spinner";
+import ProfileAddress from "../ProfileComponents/ProfileAddress";
 import CardNotFound from "./CardNotFound";
 
 interface CardLandingProps {}

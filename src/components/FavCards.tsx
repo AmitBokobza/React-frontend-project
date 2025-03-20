@@ -2,12 +2,12 @@ import { FunctionComponent, useContext, useEffect, useState } from "react";
 import Card from "../interfaces/Card/Card";
 import { userContext } from "../services/userContext";
 import { getAllCards } from "../services/cardsApiServices";
-import CardLinks from "./ReusableComp/CardLinks";
+import CardLinks from "./ReusableComp/CardComponents/CardLinks";
 import { ThemeContext } from "./Provider/ThemeProvider";
 import { searchContext } from "../App";
 import Spinner from "./ReusableComp/Spinner";
-import CardTemp from "./ReusableComp/CardTemp";
-import CardNotFound from "./ReusableComp/CardNotFound";
+import CardTemp from "./ReusableComp/CardComponents/CardTemp";
+import CardNotFound from "./ReusableComp/CardComponents/CardNotFound";
 
 interface FavCardsProps {}
 

@@ -6,7 +6,7 @@ import * as yup from "yup";
 import { normalizeUser } from "../util/Normalize";
 import toastEmitter from "../emitter/toastEmitter";
 import { userContext } from "../services/userContext";
-import RegisterForm from "./ReusableComp/RegisteForm";
+import RegisterForm from "./ReusableComp/RegisterComponents/RegisteForm";
 import { getUserById, updateUser } from "../services/usersApiServices";
 import NoAccess from "./ReusableComp/NoAccess";
 import ProfileNotFound from "./ReusableComp/ProfileNotFound";
@@ -85,10 +85,8 @@ const EditUser: FunctionComponent<EditUserProps> = () => {
         });
     },
   });
-  if(!user){
-    return (
-      <NoAccess/>
-    )
+  if (!user) {
+    return <NoAccess />;
   }
 
   if (String(user?._id) === userToUpdate?._id || user?.isAdmin) {
@@ -102,13 +100,11 @@ const EditUser: FunctionComponent<EditUserProps> = () => {
     );
   }
 
-
-    return (
-      <div className="container mx-auto px-4 py-8">
-        <ProfileNotFound theme={theme} />
-      </div>
-    );  
-  
+  return (
+    <div className="container mx-auto px-4 py-8">
+      <ProfileNotFound theme={theme} />
+    </div>
+  );
 };
 
 export default EditUser;
