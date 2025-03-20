@@ -8,6 +8,8 @@ import ProfileContact from "./ReusableComp/ProfileContact";
 import ProfileAddress from "./ReusableComp/ProfileAddress";
 import Spinner from "./ReusableComp/Spinner";
 import { getUserById } from "../services/usersApiServices";
+import { IoEllipseSharp } from "react-icons/io5";
+import ProfileNotFound from "./ReusableComp/ProfileNotFound";
 
 interface ProfilePageProps {}
 
@@ -124,6 +126,12 @@ const ProfilePage: FunctionComponent<ProfilePageProps> = () => {
         </div>
       </>
     );
+  }else{
+    return(
+      <div className="container mx-auto px-4 py-8">
+        <ProfileNotFound theme={theme}/>
+      </div>
+    )
   }
 };
 

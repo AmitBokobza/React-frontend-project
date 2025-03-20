@@ -42,7 +42,6 @@ const CardLanding: FunctionComponent<CardLandingProps> = () => {
       <div
         className={`flex justify-center items-center min-h-screen bg-${theme} p-4 md:p-6 relative`}
       >
-        {/* Gradient Accent Shapes */}
         <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden opacity-10">
           <div
             className="absolute top-1/4 -left-1/4 w-full h-96 rounded-full gradient-background"
@@ -72,7 +71,6 @@ const CardLanding: FunctionComponent<CardLandingProps> = () => {
                   : "0 10px 25px rgba(142, 86, 201, 0.1)",
             }}
           >
-            {/* Gradient Accent Stripe */}
             <div className="absolute top-0 left-0 w-full h-1 gradient-background" />
 
             <div className="p-6 md:p-8">

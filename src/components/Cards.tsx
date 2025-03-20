@@ -6,6 +6,7 @@ import { searchContext } from "../App";
 import CardLinks from "./ReusableComp/CardLinks";
 import Spinner from "./ReusableComp/Spinner";
 import CardTemp from "./ReusableComp/CardTemp";
+import CardNotFound from "./ReusableComp/CardNotFound";
 
 interface CardsProps {}
 
@@ -58,13 +59,7 @@ const Cards: FunctionComponent<CardsProps> = () => {
     <>
       <div className="container mx-auto px-4 py-8">
         {currentCards.length === 0 && (
-          <div className="flex flex-col items-center justify-center min-h-[40vh] text-center">
-            <div className="text-gray-400 text-6xl mb-4">😕</div>
-            <h3 className="text-xl font-medium mb-1">Sorry! No cards found!</h3>
-            <p className="secondary-text">
-              Try adjusting your search criteria or browse all cards
-            </p>
-          </div>
+          <CardNotFound theme={theme}/>
         )}
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">

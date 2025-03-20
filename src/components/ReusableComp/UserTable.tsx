@@ -21,7 +21,7 @@ const UserTable: FunctionComponent<UserTableProps> = ({
   return (
     <>
       <div className="overflow-x-auto relative">
-        {/* Gradient Accent Shapes */}
+
         <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden opacity-10">
           <div
             className="absolute top-1/4 -left-1/4 w-full h-96 rounded-full gradient-background"
@@ -49,8 +49,10 @@ const UserTable: FunctionComponent<UserTableProps> = ({
                   : "bg-gray-100 text-gray-800 border-gray-300"
               } text-left relative`}
             >
-              {/* Add gradient accent stripe */}
-              <tr className="absolute top-0 left-0 w-full h-1 gradient-background" />
+
+              <th className="p-0 border-0">
+                <div className="absolute top-0 left-0 w-full h-1 gradient-background" />
+              </th>
               <th className="p-3 border-b font-semibold hidden md:table-cell">
                 ID
               </th>
@@ -73,16 +75,18 @@ const UserTable: FunctionComponent<UserTableProps> = ({
                       : "border-gray-200 bg-white hover:bg-gray-100"
                   } border-b transition-colors duration-200 relative`}
                 >
-                  <div
-                    className="absolute top-0 left-0 w-1 h-full"
-                    style={{
-                      background: user.isAdmin
-                        ? "linear-gradient(to bottom, #ef4444, #dc2626)"
-                        : user.isBusiness
-                        ? "linear-gradient(to bottom, #8e56c9, #7e22ce)"
-                        : "linear-gradient(to bottom, #4f8ad5, #3b82f6)",
-                    }}
-                  />
+                  <td className="p-0 border-0">
+                    <div
+                      className="absolute top-0 left-0 w-1 h-full"
+                      style={{
+                        background: user.isAdmin
+                          ? "linear-gradient(to bottom, #ef4444, #dc2626)"
+                          : user.isBusiness
+                          ? "linear-gradient(to bottom, #8e56c9, #7e22ce)"
+                          : "linear-gradient(to bottom, #4f8ad5, #3b82f6)",
+                      }}
+                    />
+                  </td>
                   <td className="p-3 text-sm truncate max-w-[150px] hidden md:table-cell">
                     {user._id}
                   </td>

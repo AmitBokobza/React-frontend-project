@@ -9,10 +9,13 @@ import { userContext } from "../services/userContext";
 import RegisterForm from "./ReusableComp/RegisteForm";
 import { getUserById, updateUser } from "../services/usersApiServices";
 import NoAccess from "./ReusableComp/NoAccess";
+import ProfileNotFound from "./ReusableComp/ProfileNotFound";
+import { ThemeContext } from "./Provider/ThemeProvider";
 
 interface EditUserProps {}
 
 const EditUser: FunctionComponent<EditUserProps> = () => {
+  const { theme } = useContext(ThemeContext);
   const navigate = useNavigate();
   const { id } = useParams();
   const token: string = localStorage.getItem("token") || "";
@@ -82,8 +85,13 @@ const EditUser: FunctionComponent<EditUserProps> = () => {
         });
     },
   });
+  if(!user){
+    return (
+      <NoAccess/>
+    )
+  }
 
-  if (user?._id === userToUpdate?._id || user?.isAdmin) {
+  if (String(user?._id) === userToUpdate?._id || user?.isAdmin) {
     return (
       <>
         <div className="text-center">
@@ -92,11 +100,15 @@ const EditUser: FunctionComponent<EditUserProps> = () => {
         <RegisterForm formik={formik} />
       </>
     );
-  } else{
-    return (
-     <NoAccess/>
-    );
   }
+
+
+    return (
+      <div className="container mx-auto px-4 py-8">
+        <ProfileNotFound theme={theme} />
+      </div>
+    );  
+  
 };
 
 export default EditUser;
