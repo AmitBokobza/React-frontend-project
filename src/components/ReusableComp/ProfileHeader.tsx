@@ -10,7 +10,6 @@ interface ProfileHeaderProps {
 
 const ProfileHeader: FunctionComponent<ProfileHeaderProps> = ({
   loggedUser,
-  user,
 }) => {
   const { theme } = useContext(ThemeContext);
   return (

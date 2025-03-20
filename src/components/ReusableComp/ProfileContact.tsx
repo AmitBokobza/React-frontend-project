@@ -5,12 +5,10 @@ import { IUser } from "../../services/userContext";
 
 interface ProfileContactProps {
   loggedUser: User;
-  user: IUser;
 }
 
 const ProfileContact: FunctionComponent<ProfileContactProps> = ({
-  loggedUser,
-  user,
+  loggedUser
 }) => {
   const { theme } = useContext(ThemeContext);
   return (

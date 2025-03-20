@@ -71,7 +71,7 @@ const ProfilePage: FunctionComponent<ProfilePageProps> = () => {
               theme === "dark" ? "gray-800" : "white"
             } shadow-xl p-6 md:p-10 rounded-xl card border border-gray-200 dark:border-gray-700`}
           >
-            <ProfileHeader loggedUser={loggedUser} user={user} />
+            <ProfileHeader loggedUser={loggedUser} />
 
             <div
               className={`mt-10 p-6 rounded-lg ${
@@ -86,7 +86,7 @@ const ProfilePage: FunctionComponent<ProfilePageProps> = () => {
                 Contact Information
               </h2>
 
-              <ProfileContact loggedUser={loggedUser} user={user} />
+              <ProfileContact loggedUser={loggedUser} />
             </div>
 
             <div
