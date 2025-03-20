@@ -5,7 +5,7 @@ import { getAllCards } from "../services/cardsApiServices";
 import CardLinks from "./ReusableComp/CardComponents/CardLinks";
 import { ThemeContext } from "./Provider/ThemeProvider";
 import { searchContext } from "../App";
-import Spinner from "./ReusableComp/Spinner";
+import Spinner from "./ReusableComp/Misc/Spinner";
 import CardTemp from "./ReusableComp/CardComponents/CardTemp";
 import CardNotFound from "./ReusableComp/CardComponents/CardNotFound";
 

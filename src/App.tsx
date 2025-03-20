@@ -15,7 +15,7 @@ import About from "./components/About";
 import EditCard from "./components/EditCard";
 import ProfilePage from "./components/ProfilePage";
 import EditUser from "./components/EditUser";
-import PageNotFound from "./components/ReusableComp/PageNotFound";
+import PageNotFound from "./components/ReusableComp/Misc/PageNotFound";
 import AdminLayout from "./components/layout/AdminLayout";
 import UserManager from "./components/UserManager";
 

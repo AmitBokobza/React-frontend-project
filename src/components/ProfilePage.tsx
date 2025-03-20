@@ -3,13 +3,13 @@ import { userContext } from "../services/userContext";
 import { ThemeContext } from "./Provider/ThemeProvider";
 import User from "../interfaces/User";
 import { useNavigate, useParams } from "react-router-dom";
-import ProfileHeader from "./ReusableComp/ProfileHeader";
-import ProfileContact from "./ReusableComp/ProfileContact";
+import ProfileHeader from "./ReusableComp/ProfileComponents/ProfileHeader";
+import ProfileContact from "./ReusableComp/ProfileComponents/ProfileContact";
 import ProfileAddress from "./ReusableComp/ProfileComponents/ProfileAddress";
-import Spinner from "./ReusableComp/Spinner";
+import Spinner from "./ReusableComp/Misc/Spinner";
 import { getUserById } from "../services/usersApiServices";
-import ProfileNotFound from "./ReusableComp/ProfileNotFound";
-import NoAccess from "./ReusableComp/NoAccess";
+import ProfileNotFound from "./ReusableComp/ProfileComponents/ProfileNotFound";
+import NoAccess from "./ReusableComp/Misc/NoAccess";
 
 interface ProfilePageProps {}
 

@@ -8,8 +8,8 @@ import toastEmitter from "../emitter/toastEmitter";
 import { userContext } from "../services/userContext";
 import RegisterForm from "./ReusableComp/RegisterComponents/RegisteForm";
 import { getUserById, updateUser } from "../services/usersApiServices";
-import NoAccess from "./ReusableComp/NoAccess";
-import ProfileNotFound from "./ReusableComp/ProfileNotFound";
+import NoAccess from "./ReusableComp/Misc/NoAccess";
+import ProfileNotFound from "./ReusableComp/ProfileComponents/ProfileNotFound";
 import { ThemeContext } from "./Provider/ThemeProvider";
 
 interface EditUserProps {}

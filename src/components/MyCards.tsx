@@ -5,10 +5,10 @@ import { searchContext } from "../App";
 import { getAllMyCards } from "../services/cardsApiServices";
 import { ThemeContext } from "./Provider/ThemeProvider";
 import CardLinks from "./ReusableComp/CardComponents/CardLinks";
-import Spinner from "./ReusableComp/Spinner";
+import Spinner from "./ReusableComp/Misc/Spinner";
 import CardTemp from "./ReusableComp/CardComponents/CardTemp";
 import CardNotFound from "./ReusableComp/CardComponents/CardNotFound";
-import NoAccess from "./ReusableComp/NoAccess";
+import NoAccess from "./ReusableComp/Misc/NoAccess";
 
 interface MyCardsProps {}
 

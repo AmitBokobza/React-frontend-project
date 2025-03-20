@@ -7,7 +7,7 @@ import { normalizeCard } from "../util/Normalize";
 import { useNavigate } from "react-router-dom";
 import { createCard } from "../services/cardsApiServices";
 import toastEmitter from "../emitter/toastEmitter";
-import NoAccess from "./ReusableComp/NoAccess";
+import NoAccess from "./ReusableComp/Misc/NoAccess";
 
 interface CreateCardProps {}
 

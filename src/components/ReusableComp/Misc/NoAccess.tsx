@@ -1,5 +1,5 @@
 import { FunctionComponent, useContext } from "react";
-import { ThemeContext } from "../Provider/ThemeProvider";
+import { ThemeContext } from "../../Provider/ThemeProvider";
 import { Link } from "react-router-dom";
 
 interface NoAccessProps {

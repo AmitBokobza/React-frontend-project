@@ -1,12 +1,12 @@
 import { FunctionComponent, useContext, useEffect, useState } from "react";
 import User from "../interfaces/User";
-import Spinner from "./ReusableComp/Spinner";
+import Spinner from "./ReusableComp/Misc/Spinner";
 import { userContext } from "../services/userContext";
 import { ThemeContext } from "./Provider/ThemeProvider";
-import UserTable from "./ReusableComp/UserTable";
-import UserManagerHeader from "./ReusableComp/UserManagerHeader";
+import UserTable from "./ReusableComp/AdminComponents/UserTable";
+import UserManagerHeader from "./ReusableComp/AdminComponents/UserManagerHeader";
 import { getAllUsers } from "../services/usersApiServices";
-import NoAccess from "./ReusableComp/NoAccess";
+import NoAccess from "./ReusableComp/Misc/NoAccess";
 
 interface UserManagerProps {}
 

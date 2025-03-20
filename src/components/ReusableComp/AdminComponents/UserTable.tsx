@@ -1,9 +1,9 @@
 import { FunctionComponent } from "react";
-import User from "../../interfaces/User";
+import User from "../../../interfaces/User";
 import { CiEdit, CiTrash } from "react-icons/ci";
 import { Link } from "react-router-dom";
-import { deleteUser } from "../../services/usersApiServices";
-import toastEmitter from "../../emitter/toastEmitter";
+import { deleteUser } from "../../../services/usersApiServices";
+import toastEmitter from "../../../emitter/toastEmitter";
 
 interface UserTableProps {
   theme?: string;
@@ -21,7 +21,6 @@ const UserTable: FunctionComponent<UserTableProps> = ({
   return (
     <>
       <div className="overflow-x-auto relative">
-
         <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden opacity-10">
           <div
             className="absolute top-1/4 -left-1/4 w-full h-96 rounded-full gradient-background"
@@ -49,7 +48,6 @@ const UserTable: FunctionComponent<UserTableProps> = ({
                   : "bg-gray-100 text-gray-800 border-gray-300"
               } text-left relative`}
             >
-
               <th className="p-0 border-0">
                 <div className="absolute top-0 left-0 w-full h-1 gradient-background" />
               </th>

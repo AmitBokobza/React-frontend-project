@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import Card from "../../../interfaces/Card/Card";
 import { getCardById } from "../../../services/cardsApiServices";
 import { ThemeContext } from "../../Provider/ThemeProvider";
-import Spinner from "../Spinner";
+import Spinner from "../Misc/Spinner";
 import ProfileAddress from "../ProfileComponents/ProfileAddress";
 import CardNotFound from "./CardNotFound";
 

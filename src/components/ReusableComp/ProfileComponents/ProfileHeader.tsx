@@ -1,6 +1,6 @@
 import { FunctionComponent, useContext } from "react";
-import User from "../../interfaces/User";
-import { ThemeContext } from "../Provider/ThemeProvider";
+import User from "../../../interfaces/User";
+import { ThemeContext } from "../../Provider/ThemeProvider";
 
 interface ProfileHeaderProps {
   loggedUser: User;

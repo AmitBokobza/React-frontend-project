@@ -1,6 +1,6 @@
 import { FormikValues } from "formik";
 import { FunctionComponent, useContext } from "react";
-import InputForm from "../InputForm";
+import InputForm from "../Misc/InputForm";
 import { ThemeContext } from "../../Provider/ThemeProvider";
 
 interface RegisterNameProps {

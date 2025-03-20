@@ -1,13 +1,13 @@
 import { FunctionComponent, useContext } from "react";
-import { ThemeContext } from "../Provider/ThemeProvider";
-import User from "../../interfaces/User";
+import { ThemeContext } from "../../Provider/ThemeProvider";
+import User from "../../../interfaces/User";
 
 interface ProfileContactProps {
   loggedUser: User;
 }
 
 const ProfileContact: FunctionComponent<ProfileContactProps> = ({
-  loggedUser
+  loggedUser,
 }) => {
   const { theme } = useContext(ThemeContext);
   return (

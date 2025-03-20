@@ -8,7 +8,7 @@ import * as yup from "yup";
 import { normalizeCard } from "../util/Normalize";
 import toastEmitter from "../emitter/toastEmitter";
 import CardForm from "./ReusableComp/CardComponents/CardForm";
-import NoAccess from "./ReusableComp/NoAccess";
+import NoAccess from "./ReusableComp/Misc/NoAccess";
 
 interface EditCardProps {}
 
