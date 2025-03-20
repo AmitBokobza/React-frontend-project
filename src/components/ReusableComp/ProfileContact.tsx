@@ -71,10 +71,10 @@ const ProfileContact: FunctionComponent<ProfileContactProps> = ({
               Account Type
             </div>
             <div>
-              {loggedUser?.isBusiness
-                ? "Business"
-                : user?.isAdmin
+              {loggedUser?.isAdmin
                 ? "Admin"
+                : loggedUser.isBusiness
+                ? "Business"
                 : "Personal"}
             </div>
           </div>
