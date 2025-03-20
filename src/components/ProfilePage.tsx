@@ -9,6 +9,7 @@ import ProfileAddress from "./ReusableComp/ProfileAddress";
 import Spinner from "./ReusableComp/Spinner";
 import { getUserById } from "../services/usersApiServices";
 import ProfileNotFound from "./ReusableComp/ProfileNotFound";
+import NoAccess from "./ReusableComp/NoAccess";
 
 interface ProfilePageProps {}
 
@@ -52,9 +53,7 @@ const ProfilePage: FunctionComponent<ProfilePageProps> = () => {
 
   if (!user || !token) {
     return (
-      <div className="text-center">
-        <h3 className="my-10">Must Be Logged In!</h3>
-      </div>
+     <NoAccess/>
     );
   }
 

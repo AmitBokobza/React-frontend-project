@@ -92,7 +92,12 @@ const EditCard: FunctionComponent<EditCardProps> = () => {
     },
   });
 
-  if (user?._id === card?.user_id || user?.isAdmin) {
+  if (!user) {
+    return (
+      <NoAccess/>
+    )
+  }
+  if (String(user?._id) === card?.user_id || user?.isAdmin) {
     return (
       <>
         <div className="text-center">
@@ -101,11 +106,11 @@ const EditCard: FunctionComponent<EditCardProps> = () => {
         <CardForm formik={formik} />
       </>
     );
-  } else {
+  } 
+  
     return (
       <NoAccess/>
     );
-  }
-};
+  };
 
 export default EditCard;
