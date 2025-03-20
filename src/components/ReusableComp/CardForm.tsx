@@ -67,11 +67,10 @@ const CardForm: FunctionComponent<CardFormProps> = ({ formik }) => {
               formik={formik}
               required
             />
-            <InputForm type="url" name="web" id="web" formik={formik} />
+            <InputForm type="url" name="web" id="web" formik={formik} required />
           </div>
         </div>
 
-        {/* Image */}
         <div className="p-4 md:p-6 bg-white/50 dark:bg-gray-800/20 rounded-lg">
           <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">
             Image
@@ -82,7 +81,6 @@ const CardForm: FunctionComponent<CardFormProps> = ({ formik }) => {
           </div>
         </div>
 
-        {/* Address */}
         <div className="p-4 md:p-6 bg-white/50 dark:bg-gray-800/20 rounded-lg">
           <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">
             Address
@@ -119,7 +117,7 @@ const CardForm: FunctionComponent<CardFormProps> = ({ formik }) => {
               formik={formik}
               required
             />
-            <InputForm type="number" name="zip" id="zip" formik={formik} />
+            <InputForm type="number" name="zip" id="zip" formik={formik} required />
           </div>
         </div>
 

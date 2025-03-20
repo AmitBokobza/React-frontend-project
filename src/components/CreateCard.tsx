@@ -59,7 +59,7 @@ const CreateCard: FunctionComponent<CreateCardProps> = () => {
       city: yup.string().required("City is required!"),
       street: yup.string().required("Street is required!"),
       houseNum: yup.number().min(1).required("House Number is required!"),
-      zip: yup.number(),
+      zip: yup.number().required(),
     }),
     onSubmit: (values, { resetForm }) => {
       const normalizedCard = normalizeCard(values);
