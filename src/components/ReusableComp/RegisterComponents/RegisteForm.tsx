@@ -42,16 +42,16 @@ const RegisterForm: FunctionComponent<RegisterFormProps> = ({
             className="max-w-3xl mx-auto space-y-10"
             onSubmit={formik.handleSubmit}
           >
-            {/* Full Name Section */}
+           
             <RegisterName formik={formik} />
 
-            {/* Contact Information Section */}
+          
             <RegisterContact formik={formik} isCreate />
 
-            {/* Image & Alternate Text Section */}
+           
             <RegisterImg formik={formik} />
 
-            {/* Address Section */}
+           
             <RegisterAddress formik={formik} />
 
             {isCreate && (

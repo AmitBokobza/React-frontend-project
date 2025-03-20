@@ -1,5 +1,5 @@
 import { createContext, FunctionComponent, ReactNode, useEffect, useState } from "react";
-import { ThemeContextType, ThemeMode } from "../../services/Users/types";
+import { ThemeContextType, ThemeMode } from "../../services/types";
 
 
 export const ThemeContext = createContext<ThemeContextType>({
