@@ -57,13 +57,13 @@ const CardLinks: FunctionComponent<CardLinksProps> = ({
           className="accent cursor-pointer"
           onClick={() => {
             deleteCard(card?._id as string, token)
-              .then((res) => {
+              .then(() => {
                 toastEmitter.success("Card Deleted!");
                 if (deletCardFromList) {
                   deletCardFromList(card?._id as string);
                 }
               })
-              .catch((err) => {
+              .catch(() => {
                 toastEmitter.error("Error deleting card!");
               });
           }}
@@ -103,13 +103,13 @@ const CardLinks: FunctionComponent<CardLinksProps> = ({
               className="accent cursor-pointer"
               onClick={() => {
                 deleteCard(card?._id as string, token)
-                  .then((res) => {
+                  .then(() => {
                     toastEmitter.success("Card Deleted!");
                     if (deletCardFromList) {
                       deletCardFromList(card?._id as string);
                     }
                   })
-                  .catch((err) => {
+                  .catch(() => {
                     toastEmitter.error("Error deleting card!");
                   });
               }}

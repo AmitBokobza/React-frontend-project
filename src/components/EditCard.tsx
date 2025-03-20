@@ -80,7 +80,7 @@ const EditCard: FunctionComponent<EditCardProps> = () => {
     onSubmit: (values, { resetForm }) => {
       const normalizedCard = normalizeCard(values);
       updateCard(id as string, normalizedCard, token)
-        .then((res) => {
+        .then(() => {
           toastEmitter.success("Card Updated!");
           navigate("/my-cards");
         })

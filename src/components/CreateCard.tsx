@@ -64,13 +64,12 @@ const CreateCard: FunctionComponent<CreateCardProps> = () => {
     onSubmit: (values, { resetForm }) => {
       const normalizedCard = normalizeCard(values);
       createCard(normalizedCard, token)
-        .then((res) => {
+        .then(() => {
           toastEmitter.success("Card Succesfully Created!");
           navigate("/");
         })
-        .catch((err) => {
+        .catch(() => {
           toastEmitter.error("Failed Creating Card");
-          console.log(err);
         });
       resetForm();
     },
