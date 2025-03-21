@@ -95,7 +95,7 @@ const EditUser: FunctionComponent<EditUserProps> = () => {
         <div className="text-center">
           <h1 className="text-3xl my-5">Edit User</h1>
         </div>
-        <RegisterForm formik={formik} />
+        <RegisterForm formik={formik}  isCreate={false}/>
       </>
     );
   }
